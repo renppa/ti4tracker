@@ -624,6 +624,40 @@ button:not(:disabled):active{scale:.96}
 .stsel{display:flex;flex-direction:column;gap:.4rem}
 </style>
 <style>
+.tools .tlt{width:auto!important;min-width:0!important;height:2rem!important;padding:0 .9rem!important;border-radius:.6rem!important;font-size:.85rem;font-weight:600;letter-spacing:.04em}
+.tools .tlt svg{display:none!important}
+.tools .tlt::after{content:"Tools"}
+.tools .tbtns{width:auto!important;min-width:12rem;grid-template-columns:1fr!important;gap:0!important;padding:.35rem!important;border-radius:.8rem!important}
+.tools .tbtns button.tb{flex-direction:row!important;justify-content:flex-start!important;min-height:0!important;padding:.5rem .8rem!important;border-radius:.5rem!important;font-size:.9rem;font-weight:500;text-align:left!important}
+.tools .tbtns .ti,.tools .tbtns button.tb svg{display:none!important}
+/* tools: refined minimal */
+.tools .tlt{border:.08rem solid rgba(233,196,106,.45)!important;background:rgba(233,196,106,.07)!important;color:var(--gold)!important;opacity:1;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem!important;font-weight:700;transition:background .15s,border-color .15s,box-shadow .15s}
+.tools .tlt:hover,.tools.open .tlt{background:rgba(233,196,106,.2)!important;border-color:rgba(233,196,106,.9)!important;box-shadow:0 0 1rem -.2rem rgba(233,196,106,.6)}
+.tools .tbtns{min-width:13.5rem;padding:.4rem!important;border-radius:1rem!important;background:rgba(14,12,36,.97)!important;border:.08rem solid rgba(233,196,106,.28);box-shadow:0 .9rem 2.6rem #000d,0 0 0 .08rem rgba(0,0,0,.3)!important}
+.tools.open .tbtns{animation:tbIn .14s ease-out}
+@keyframes tbIn{from{opacity:0;transform:translateY(-.35rem)}to{opacity:1;transform:none}}
+.tools .tbtns button.tb{position:relative;font-size:.88rem!important;font-weight:500!important;letter-spacing:.04em;color:var(--t)!important;transition:background .12s,color .12s,transform .12s}
+.tools .tbtns button.tb::before{content:"";position:absolute;left:.25rem;top:30%;bottom:30%;width:.14rem;border-radius:.1rem;background:var(--gold);opacity:0;transition:opacity .12s}
+.tools .tbtns button.tb:hover:not(:disabled){background:rgba(233,196,106,.1)!important;color:var(--gold)!important;transform:translateX(.12rem)}
+.tools .tbtns button.tb:hover:not(:disabled)::before{opacity:1}
+.tools .tbtns #undob,.tools .tbtns #thb,.tools .tbtns #helpb{margin-top:.3rem;border-top:.07rem solid rgba(255,255,255,.1)!important;border-radius:0 0 .5rem .5rem!important;padding-top:.65rem!important}
+.tools .tbtns #elimb,.tools .tbtns #ttoffb,.tools .tbtns #newgb{color:#ff9d92!important}
+.tools .tbtns #elimb:hover:not(:disabled),.tools .tbtns #ttoffb:hover:not(:disabled),.tools .tbtns #newgb:hover:not(:disabled){background:rgba(255,120,110,.12)!important;color:#ffb3aa!important}
+.tools .tbtns .zm{margin-top:.35rem;padding-top:.45rem}
+.tools .tbtns .zm button{border-radius:.5rem!important}
+@media (max-width:900px),(pointer:coarse){
+.tools .tlt{height:2.8rem!important;padding:0 1.2rem!important;font-size:.8rem!important}
+.tools .tbtns{position:absolute!important;left:auto!important;right:0!important;top:calc(100% + .6rem)!important;width:min(17rem,calc(100vw - 1.4rem))!important}
+.tools .tbtns button.tb{min-height:3rem!important;font-size:1rem!important}
+}
+.rpb{text-align:center;min-width:18rem}
+.rpres{background:rgba(14,12,36,.96);display:flex;align-items:center;justify-content:center;gap:.8rem;margin:1rem 0 .4rem;padding:.9rem 1.2rem;border:.14rem solid var(--fc);border-radius:1rem;font-size:2rem;font-weight:700;color:var(--t);opacity:.75;transition:box-shadow .2s,opacity .2s}
+.rpres.fin{opacity:1;box-shadow:0 0 1.8rem -.2rem var(--fc)}
+.rpres .flg{width:3rem;height:3rem;object-fit:contain}
+.rpsub{color:var(--m);min-height:2.4rem;margin-bottom:.6rem}
+.rpw{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.rpw canvas{width:min(30rem,82vw);height:auto;aspect-ratio:1;filter:drop-shadow(0 .8rem 1.6rem #000c)}
+.rpw .rpres{margin:0;font-size:1.8rem;min-height:3.4rem}
 .tvm{align-items:start!important}.sbl{flex:none!important;grid-auto-rows:minmax(4.3rem,auto)!important}
 .ttbox{display:inline-flex;align-items:center;gap:.8rem;padding:.1rem .8rem;line-height:1.1;border:.12rem solid var(--gold);border-radius:.6rem;background:#100d25;white-space:nowrap;font-variant-numeric:tabular-nums}
 .ttbox[hidden]{display:none}
@@ -1159,7 +1193,7 @@ function renderAction(){try{updDots()}catch(e){}
  let h=`<div class="tvh"><div class="tvt tvtw"><div><small>Time</small><b id="aptm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(apMs()))}</b>${S.gp||(!S.stat&&st==='running')?'':`<span class="tst ${S.stat?'ended':st}">${stl}</span>`}</div><div class="tvhs">${holdSel()}${eoReady()&&!S.simple?'<button class="eo" title="Agenda vote while the Action Phase clock keeps running" onclick="execOrder()">Executive Order – Agenda</button>':''}</div></div><div class="tvg"><div class="tvc">${toolsHtml()}${S.stat?'':`<button class="stsb ${S.sco?'on':''}" onclick="S.sco=!S.sco;renderAction()">${S.sco?'Done Scoring':'Score Points'}</button>`}${S.stat?'<button class="stsb" onclick="backToAction()">← Back to Action Phase</button>':''}<button class="stsb ${S.stat?'on':''}" onclick="${S.stat?'statusNext()':'statusStart()'}">${S.stat?(S.simple?'Next Round':(custTaken()?'Start Agenda Phase':'Start Strategy Phase')):'Start Status Phase'}</button>${ctl}</div><div class="tvgt"><small>Total Time</small><b id="gtm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(gtNow()))}</b></div></div></div>`;
  h+=vdBar();
  h+=`<div class="tvm"><div class="sbcol"><aside class="sbd"><div class="sbl">`
-  +rk.map(e=>{const lead=e.rk===1&&e.t>0,u=vpNum(e.i,e.t),ps=((S.sc&&S.sc[e.i])||[]).some(c=>(S.cs||{})[c]===2);return `<div class="sbr ${lead?'lead':''}${ps?' pas':''}" style="--fc:${pcol(e.i)}"><span class="rk">${e.rk}</span><div class="sbn"><b>${lead?'👑 ':''}${fvT(e.i)}</b>${(()=>{const l=scLine(e.i),n=nmGet(e.i);if(!n)return l;const pn=`<i class="pnm">${esc(n)}</i>`;return l?l.replace(/<\/span>$/,pn+'</span>'):`<span class="scl">${pn}</span>`})()}<small>PO ${e.po} · SO ${S.mp.filter(m=>m.p===e.i&&m.r==='Secret Objective'&&m.pts>0).length} · Quacs ${e.ex}</small></div><span class="sbv">${scThumbs(e.i)}<em${u?` class="${u.d>0?'nup':'ndn'}" style="--ad:-${u.el}ms"`:''}>${e.t}</em></span>${(S.stat||S.sco)?`<button class="sbp" title="Add VP" onclick="openVP(${e.i})">＋</button>`:''}</div>`}).join('')
+  +rk.map(e=>{const lead=e.rk===1&&e.t>0,u=vpNum(e.i,e.t),ps=((S.sc&&S.sc[e.i])||[]).some(c=>(S.cs||{})[c]===2);return `<div class="sbr ${lead?'lead':''}${ps?' pas':''}" style="--fc:${pcol(e.i)}"><span class="rk">${e.rk}</span><div class="sbn"><b>${fvT(e.i)}</b>${(()=>{const l=scLine(e.i),n=nmGet(e.i);if(!n)return l;const pn=`<i class="pnm">${esc(n)}</i>`;return l?l.replace(/<\/span>$/,pn+'</span>'):`<span class="scl">${pn}</span>`})()}<small>PO ${e.po} · SO ${S.mp.filter(m=>m.p===e.i&&m.r==='Secret Objective'&&m.pts>0).length} · Quacs ${e.ex}</small></div><span class="sbv">${scThumbs(e.i)}<em${u?` class="${u.d>0?'nup':'ndn'}" style="--ad:-${u.el}ms"`:''}>${e.t}</em></span>${(S.stat||S.sco)?`<button class="sbp" title="Add VP" onclick="openVP(${e.i})">＋</button>`:''}</div>`}).join('')
   +'</div></aside>'+lawBox()+'</div><section class="objs"><div class="og">';
  h+=S.obj.map(o=>{const q=poG(o.k);return `<div class="oc s${q[1]}"><div class="och"><span class="stg">${q[3]||('Stage '+(q[1]==1?'I':'II'))}</span><span class="cnt">${q[1]} VP · ${o.s.length}/${n}</span><button class="rm" title="Remove objective" onclick="rmObj(${o.k})">✕</button></div><div class="ocn">${esc(q[0])}</div><div class="ocr">${esc(q[2])}</div><div class="ocs">${S.f.map((x,i)=>{const on=o.s.includes(i);return `<button class="pch ${on?'on':''}" style="--fc:${pcol(i)};--ik:${inkOn(pcol(i))}" title="${esc(fvName(i))}" aria-label="${esc(fvName(i))}" onclick="togScore(${o.k},${i})">${flgX(x,'fl-chip')}</button>`}).join('')}</div></div>`}).join('')
   ||`<div class="empty">No public objectives yet${S.stat||S.sco?' – add them from the list at the bottom.':' – press Score Points to add them.'}</div>`;
@@ -1223,7 +1257,7 @@ function openStrat(){let m=$('stm');if(!m){m=document.createElement('div');m.id=
   if(cp.length>=2)return last.includes(c)&&cp.includes(c);
   return base||(last.includes(c)&&cp.includes(c))};
  const tg=L=>L.reduce((a,c)=>a+(live?S.tgb[c]:S.tgt[c]),0);
- const banner=live?(cur>=0?`<div class="stbn" style="--fc:${pcol(cur)}">▶ ${esc(F[S.f[cur]][0])} – choose strategy card ${(S.sc[cur]||[]).length+1}/${need}</div>`:'<div class="stbn done">All strategy cards chosen – start the Action Phase</div>'):'';
+ const banner=live?(cur>=0?`<div class="stbn" style="--fc:${pcol(cur)}">▶ ${esc(F[S.f[cur]][0])} – choose strategy card ${(S.sc[cur]||[]).length+1}/${need} · key 1–8</div>`:'<div class="stbn done">All strategy cards chosen – start the Action Phase</div>'):'';
  m.innerHTML=`<div class="mb sw"><div class="mh"><h3>Strategy Phase</h3>${live?`<span class="timer">⏱ <b id="sttm">${fmtH(stMs())}</b></span><button onclick="stTog()">${t.run?'⏸ Pause':'▶ Resume'}</button>`:'<button onclick="closeStrat()">✕ Close</button>'}</div>
  <div class="stsp"><label>Speaker <select onchange="setSpk(this.value)"><option value="">Choose speaker…</option>${S.f.map((x,i)=>`<option value="${i}" ${sp===i?'selected':''}>${i+1}. ${esc(F[x][0])}</option>`).join('')}</select></label><span class="tag">${custom?'Custom order (Nucleum)':sp>=0?'Speaker, then clockwise':'Seat order – choose the speaker'}</span></div>
  ${banner}
@@ -1690,7 +1724,7 @@ function lawRecord(){const a=S.ag;if(!a)return;let c;try{c=calc()}catch(e){retur
   S.laws.push({id:S.lid,n:a.n,o:a.e?'Elected':(w==='for'?'For':'Against'),el:a.e?String(c.K[w]||''):'',own})}
  if(a.n==='New Constitution'&&w==='for')S.laws=[];
  if(a.n==='Ixthian Artifact'&&S.dk!=='orig')S.ixth=(w==='against')}
-const PEX_MAP={'Clandestine Operations':{against:2},'Hyperlane Development Program':{against:4},'Mutiny':{for:2},'Pax Magnifica, Bellum Gloriosum':{for:5,against:1},'Term Limits':{against:2}};
+const PEX_MAP={'Affirmation of Divine Right':{against:7},'Anti-Intellectual Revolution':{against:6},'Clandestine Operations':{against:2},'Hyperlane Development Program':{against:4},'Mutiny':{for:2},'Pax Magnifica, Bellum Gloriosum':{for:5,against:1},'Term Limits':{against:2}};
 function pexFor(n,w,xc){if(S.dk==='orig'||!n||!w)return[];const m=PEX_MAP[n];if(m&&m[w]!=null)return[m[w]];if(n==='Unconventional Measures'&&w==='against'&&xc!==''&&xc!=null&&!isNaN(+xc))return[+xc];return[]}
 function pexRecord(){if(!S.ag)return;let c;try{c=calc()}catch(e){return}const L=pexFor(S.ag.n,c.win,S.rs&&S.rs.xc);if(!L.length)return;S.pex=S.pex||[];L.forEach(x=>{if(!S.pex.includes(x))S.pex.push(x)})}
 function pexApply(){if(!S.pex||!S.pex.length)return;S.cs=S.cs||{};S.pex.forEach(c=>{S.cs[c]=1});S.pex=[]}
@@ -2002,7 +2036,7 @@ function pvClose(){const m=$('pvm');if(m)m.style.display='none';if(ABSPEND){ABSP
 function pvSave(){const st=S.pvKind==='start',a=S.f.map(()=>null);document.querySelectorAll('#pvm .pvin').forEach(x=>{const n=x.value.trim();a[+x.dataset.i]=n===''?0:Math.max(0,parseInt(n,10)||0)});S.pv=a;if(st)S.pvMax=a.slice();if(Array.isArray(S.v))S.v.forEach((v,i)=>{if(a[i]!=null&&v.votes>a[i])v.votes=a[i]});pvClose();if(S.view==='agenda'&&S.step===4&&Array.isArray(S.v)&&$('vb')){rv()}}
 function helpOpen(){let m=$('hlm');if(!m){m=document.createElement('div');m.id='hlm';m.className='mo';m.style.zIndex=100;m.onclick=e=>{if(e.target===m)helpClose()};document.body.appendChild(m)}
  m.innerHTML=`<div class="mb" style="max-width:36rem"><div class="mh"><h3>Help</h3><button onclick="helpClose()">✕ Close</button></div><ul class="hlp">
-<li><b>Simple mode:</b> on the player count screen, switch on <b>Simple mode</b> to skip the Strategy and Agenda phases. After choosing factions you go straight to the Action Phase screen; the title is hidden and the Status Phase button ends with <b>Next Round</b>, which starts the next round.</li><li><b>Turn tracker:</b> switch it on on the player count screen. The Turn order bar highlights the active player and <b>Insert</b> / <b>Numpad 0</b> passes the turn to the next player who has not passed. Each player’s personal time runs only during the Action Phase; see everyone’s time under <b>Playtime</b> in Tools. <b>Turn tracker off</b> in Tools disables it for the rest of the game.</li>
+<li><b>Simple mode:</b> on the player count screen, switch on <b>Simple mode</b> to skip the Strategy and Agenda phases. After choosing factions you go straight to the Action Phase screen; the title is hidden and the Status Phase button ends with <b>Next Round</b>, which starts the next round.</li><li><b>Turn tracker:</b> switch it on on the player count screen. The Turn order bar highlights the active player and <b>Insert</b> / <b>Numpad 0</b> passes the turn to the next player who has not passed. <b>Delete</b> / <b>Numpad ,</b> marks the active player’s strategy card like its number key. Each player’s personal time runs only during the Action Phase; see everyone’s time under <b>Playtime</b> in Tools. <b>Turn tracker off</b> in Tools disables it for the rest of the game.</li>
 <li><b>Action phase:</b> number keys <b>1–8</b> mark strategy cards. Once = crossed out, twice = <b style="color:#ff4040">PASSED</b>, third = cleared. When a player has two strategy cards (3–4 players), PASSED only appears after both of their cards are marked played; until then pressing the number again just removes the cross-out. Resets when the next Action phase starts.</li>
 <li><b>Agenda phase needs the Custodians Token:</b> choose who took it in the Custodians Token menu (Action phase). Without it the Agenda phase cannot start.</li>
 <li><b>Reminders:</b> the app reminds you of some faction abilities during the game, and of technology effects when they matter.</li>
@@ -2290,7 +2324,48 @@ function ptDraw(){const m=document.getElementById('ptm');if(!m)return;tmArr();le
 function ptClose(quiet){const m=document.getElementById('ptm');if(m)m.style.display='none';if(S&&!quiet)tmSync()}
 document.addEventListener('keydown',e=>{if(e.code!=='Insert'&&e.code!=='Numpad0')return;if(e.ctrlKey||e.metaKey||e.altKey)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;if(!S||!S.trk||S.view!=='action')return;if([...document.querySelectorAll('.mo,.smo')].some(m=>getComputedStyle(m).display!=='none'))return;e.preventDefault();if(e.repeat)return;ttNext()});
 document.addEventListener('keydown',e=>{if(e.code!=='NumpadAdd'&&e.code!=='NumpadSubtract')return;if(e.ctrlKey||e.metaKey||e.altKey)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;e.preventDefault();zoomBy(e.code==='NumpadAdd'?5:-5)});
-document.addEventListener('keydown',e=>{if(e.key!=='Backspace')return;if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;if(!S||!S.n||!UH.length)return;if([...document.querySelectorAll('.mo,.smo')].some(m=>getComputedStyle(m).display!=='none'))return;e.preventDefault();undo()});
+document.addEventListener('keydown',e=>{if(e.key!=='Backspace')return;if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;if(!S||!S.n||!UH.length)return;if([...document.querySelectorAll('.mo,.smo')].some(m=>getComputedStyle(m).display!=='none'&&!(m.id==='stm'&&S.sT&&S.sT.open)))return;e.preventDefault();undo();try{if(S.sT&&S.sT.open)openStrat()}catch(_){}});
 document.addEventListener('keydown',e=>{if(e.code!=='NumpadEnter')return;if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;if(!S||S.view!=='action')return;if([...document.querySelectorAll('.mo,.smo')].some(m=>getComputedStyle(m).display!=='none'))return;e.preventDefault();pushUndo();gpToggle()});
+document.addEventListener('keydown',e=>{if(e.code!=='Delete'&&e.code!=='NumpadDecimal')return;if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;if(!S||!S.trk||S.view!=='action'||S.stat||!(S.ta>=0))return;const L=(S.sc&&S.sc[S.ta])||[],cs=S.cs||{};const c=L.find(x=>!cs[x]);const d=c!==undefined?c:L.find(x=>cs[x]===1);if(d===undefined)return;e.preventDefault();pushUndo();scTog(d,e)});
+var RPT=null;
+var RPC=null,RPA=null;
+function rpClose(){clearInterval(RPT);RPT=null;clearTimeout(RPC);RPC=null;if(RPA){cancelAnimationFrame(RPA);RPA=null}const m=document.getElementById('rpm');if(m)m.style.display='none'}
+function rpImg(pi){const h=String(flgP(pi,'')),m=h.match(/src="([^"]+)"/);return new Promise(res=>{if(!m)return res(null);const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=m[1]})}
+function rpRoll(){if(!S||!S.f)return;const ex=S.trk&&S.ta>=0?S.ta:-1,L=S.f.map((x,i)=>i).filter(i=>S.f[i]>=0&&i!==ex);if(!L.length)return;
+ let m=document.getElementById('rpm');if(!m){m=document.createElement('div');m.id='rpm';m.className='mo';m.onclick=e=>{if(e.target===m)rpClose()};document.body.appendChild(m)}
+ clearTimeout(RPC);RPC=null;if(RPA){cancelAnimationFrame(RPA);RPA=null}
+ const tok=Symbol();rpRoll.tok=tok;
+ /* 5 segments per faction in random order, no two equal neighbours when possible */
+ let segs;for(let t=0;t<200;t++){segs=[];L.forEach(pi=>{for(let k=0;k<5;k++)segs.push(pi)});for(let k=segs.length-1;k>0;k--){const r=Math.floor(Math.random()*(k+1));[segs[k],segs[r]]=[segs[r],segs[k]]}
+  if(L.length<2||segs.every((v,k)=>v!==segs[(k+1)%segs.length]))break}
+ const n=segs.length,arc=Math.PI*2/n,wi=Math.floor(Math.random()*n),win=segs[wi];
+ m.style.display='flex';
+ m.innerHTML='<div class="rpw"><canvas id="rpc" width="640" height="640"></canvas><div class="rpres" id="rpr" style="visibility:hidden"></div></div>';
+ Promise.all(L.map(pi=>rpImg(pi))).then(ims=>{if(rpRoll.tok!==tok)return;const IM={};L.forEach((pi,k)=>IM[pi]=ims[k]);
+ const cv=document.getElementById('rpc');if(!cv)return;const x=cv.getContext('2d'),W=640,C=W/2,R=C-26;
+ const fin=-Math.PI/2-(wi+.5+(Math.random()-.5)*.6)*arc-Math.PI*2*(5+Math.floor(Math.random()*3));
+ const ls=Math.max(30,Math.min(64,R*arc*.78));
+ const draw=rot=>{x.clearRect(0,0,W,W);
+  x.save();x.shadowColor='rgba(233,196,106,.55)';x.shadowBlur=28;x.beginPath();x.arc(C,C,R+10,0,Math.PI*2);x.fillStyle='#e9c46a';x.fill();x.restore();
+  x.beginPath();x.arc(C,C,R+4,0,Math.PI*2);x.fillStyle='#14112e';x.fill();
+  segs.forEach((pi,k)=>{const a0=rot+k*arc,a1=a0+arc;x.beginPath();x.moveTo(C,C);x.arc(C,C,R,a0,a1);x.closePath();x.fillStyle=pcol(pi);x.fill();x.lineWidth=2.5;x.strokeStyle='rgba(10,8,28,.85)';x.stroke();
+   const im=IM[pi];if(im){x.save();x.translate(C,C);x.rotate(a0+arc/2);x.translate(R-ls*.72,0);x.rotate(Math.PI/2);x.beginPath();x.arc(0,0,ls*.58,0,Math.PI*2);x.fillStyle='rgba(10,8,28,.72)';x.fill();x.drawImage(im,-ls/2,-ls/2,ls,ls);x.restore()}});
+  for(let k=0;k<n;k++){const a=rot+k*arc;x.beginPath();x.arc(C+Math.cos(a)*(R+4),C+Math.sin(a)*(R+4),5,0,Math.PI*2);x.fillStyle='#e9c46a';x.fill()}
+  x.beginPath();x.arc(C,C,46,0,Math.PI*2);x.fillStyle='#14112e';x.fill();x.lineWidth=6;x.strokeStyle='#e9c46a';x.stroke();
+  x.beginPath();x.moveTo(C-24,8);x.lineTo(C+24,8);x.lineTo(C,66);x.closePath();x.fillStyle='#ffd35a';x.fill();x.lineWidth=5;x.strokeStyle='#14112e';x.stroke()};
+ const D=5200,t0=performance.now(),ease=t=>1-Math.pow(1-t,4);
+ const step=now=>{const t=Math.min(1,(now-t0)/D);draw(fin*ease(t));if(t<1){RPA=requestAnimationFrame(step)}else{RPA=null;
+   const r=document.getElementById('rpr');if(r){r.style.setProperty('--fc',pcol(win));r.innerHTML=flgP(win,'')+'<span>'+esc(nmGet(win)||fvShort(win))+'</span>';r.classList.add('fin');r.style.visibility='visible'}
+   RPC=setTimeout(rpClose,3000);try{logAction('Random player',(nmGet(win)||fvShort(win)))}catch(e){}}};
+ draw(0);RPA=requestAnimationFrame(step)})}
+document.addEventListener('keydown',e=>{if(e.code==='Escape'||e.key==='Escape')rpClose()});
+document.addEventListener('keydown',e=>{if(e.code!=='Numpad9')return;if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;const t=e.target;if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable))return;if(!S||!S.f||!S.f.length||S.view!=='action'||!S.f.every(x=>x>=0))return;const rp=document.getElementById('rpm'),open=rp&&rp.style.display==='flex';if(!open&&[...document.querySelectorAll('.mo,.smo')].some(m=>getComputedStyle(m).display!=='none'))return;e.preventDefault();rpRoll()});
+document.addEventListener('keydown',e=>{const mm=/^(?:Numpad|Digit)([1-8])$/.exec(e.code||'');if(!mm)return;if(e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;if(!S||!S.sT||!S.sT.open||!S.f||!S.f.length)return;const stm=document.getElementById('stm');if(!stm||stm.style.display!=='flex')return;
+ const t=e.target;if(t&&(t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.isContentEditable))return;
+ if([...document.querySelectorAll('.mo,.smo')].some(m=>m.id!=='stm'&&getComputedStyle(m).display!=='none'))return;
+ e.preventDefault();if(t&&t.tagName==='SELECT')t.blur();
+ const c=+mm[1]-1,custom=!!(stD()&&stD().length===S.f.length);if(!custom&&spIdx()<0){toastMsg('Choose the speaker first','#ff7b6b');return}
+ const cur=stTurn();if(cur<0)return;if(S.sc.some(l=>l&&l.includes(c))){toastMsg('Strategy card '+(c+1)+' is already chosen','#ff7b6b');return}
+ pickSC(cur,c,null)});
 </script>
 </body></html>
