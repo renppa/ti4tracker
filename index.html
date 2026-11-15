@@ -704,8 +704,10 @@ const PLANETS = [
 'Rigel III','Saath','Saudor','Semlore','Shalloq','Shaltor','Sierpen','Starpoint','Tar’Mann','Tequ’ran',
 'Thibah','Torkan','Tren’lak','Tsiolkovsky','Vefut II','Vega Major','Vega Minor','Wellon','Xanhact','Zohbat',
 'Mallice','Avar','Lazul Rex','Archon Ren','Archon Tau','Avar','Lisis II','Valk','Vega',
-'The Dark','The Atrament','Mirage'
+'The Dark','The Atrament','Mirage',
+'Lirta IV','Bako','Lazar','Archon Vail','Perimeter','Ang','Vorhal','Velnor','Cealdri','Loki','Lesab','Olergodt','Vira-Pics III','Andeara','Lemox','Emelpar','Faunus','Garbozia','Tempesta','Industrex','Capha','Kostboth','Cresius','Hercalor','Tiamat','New Terra','Tinnes','Bellatrix','Rarron','Tarana','Styx','Ordinian','Avernus','Thunder’s Edge','Cocytus','Lethe','Phlegethon','Oluz Station'
 ];
+PLANETS.splice(0,PLANETS.length,...[...new Set(PLANETS)].sort((a,b)=>a.localeCompare(b)));
 
 const SECRET_OBJECTIVES = [
 'Dictate Policy','Drive the Debate','Defy Space and Time','Destroy Heretical Works','Establish Hegemony','Foster Cohesion','Hoard Raw Materials','Mechanize the Military','Occupy the Fringe','Produce En Masse','Seize an Icon','Stake Your Claim','Strengthen Bonds','Adapt New Strategies','Become the Gatekeeper','Control the Region','Cut Supply Lines','Establish a Perimeter','Forge an Alliance','Form a Spy Network','Fuel the War Machine','Gather a Mighty Fleet','Learn the Secrets of the Cosmos','Master the Laws of Physics','Mine Rare Metals','Monopolize Production','Occupy the Seat of the Empire','Threaten Enemies','Become a Martyr','Betray a Friend','Brave the Void','Darken the Skies','Demonstrate Your Power','Fight With Precision','Prove Endurance','Destroy Their Greatest Ship','Make an Example of Their World','Spark a Rebellion','Turn Their Fleets to Dust','Unveil Flagship'
