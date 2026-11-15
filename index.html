@@ -691,7 +691,75 @@ button:not(:disabled):active{scale:.96}
 .ttpn .ttpm{flex-direction:column;gap:.35rem}
 .ttpn .ttpf{display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:2.6rem;font-weight:700;line-height:1.1}
 .ttpn .ttps{font-size:1.4rem;font-weight:600}.ttpn .ttpx{text-decoration:line-through;opacity:.55}
-.toc .tct{font-size:.85rem;font-weight:600;color:var(--m)}.toc.tcur .tct{color:var(--gold)}
+.toc .tct{font-size:.85rem;font-weight:600;color:var(--m);border:0;background:none;padding:0}.toc.tcur .tct{color:var(--gold)}
+.ttpn{border:0!important}
+.toc.tcur{background:none!important;outline:0!important;box-shadow:none!important}
+.toc{padding:.15rem .6rem!important;border:.12rem solid color-mix(in srgb,var(--fc) 70%,transparent)!important;border-radius:.7rem}
+.toc.tcur .tct{color:var(--m)}
+.toc{border:.12rem solid transparent!important}
+.toc.tcur{border-color:color-mix(in srgb,var(--fc) 70%,transparent)!important}
+.toc .tct,.toc.tcur .tct{background:none;border:0;box-shadow:none;padding:0;color:var(--m);font-weight:500}
+.ptrow,.ptrow.pcur{background:none!important}
+.toc .tct,.toc.tcur .tct{font-size:.8rem;font-weight:400;opacity:.8}
+.dots .clkc i{width:.64em!important;height:auto!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+.dots .clkc i.c{width:.3em!important}
+.toc .tct,.toc.tcur .tct{font-size:1rem;font-weight:700;opacity:1;color:var(--t);letter-spacing:.02em}
+.ttwrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem}
+.ttwrap .ttpn{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;text-align:center;margin-top:0;min-height:15rem}
+.ttwrap .ttpf{flex-wrap:wrap;font-size:clamp(1.6rem,2.6vw,2.6rem)}
+.ttwrap .ttpt{text-align:center}.ttwrap .ttpt b{font-size:clamp(2rem,3.4vw,3.4rem)}
+.ttwrap .ttnx .ttpm{opacity:.9}
+@media(max-width:700px){.ttwrap{grid-template-columns:1fr}.ttwrap .ttpn{min-height:0}}
+.ttwrap .ttpn{flex-direction:row;justify-content:flex-start;flex-wrap:wrap;gap:.6rem 1.2rem;min-height:0;padding:.7rem 1.2rem;text-align:left}
+.ttwrap .ttpl{white-space:nowrap}
+.ttwrap .ttpm{flex-direction:row;align-items:center;gap:.4rem .9rem;flex-wrap:wrap}
+.ttwrap .ttpf{font-size:clamp(1.2rem,1.8vw,1.8rem);gap:.6rem}
+.ttwrap .ttpm .flg{width:2.4rem;height:2.4rem}
+.ttwrap .ttps{font-size:1rem}
+.ttwrap .ttpp{display:inline;margin:0;font-size:1rem}
+.ttwrap .ttpt{margin-left:auto;display:flex;align-items:baseline;gap:.5rem;text-align:right}
+.ttwrap .ttpt b{font-size:clamp(1.4rem,2vw,2rem)}
+.ttwrap .ttpt small{display:inline}
+.ttwrap .ttpn{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center;gap:.8rem}
+.ttwrap .ttpa{text-align:left}
+.ttwrap .ttpm{flex-direction:column;align-items:center;gap:.25rem;justify-content:center;text-align:center}
+.ttwrap .ttpp{display:block;margin-top:.25rem}
+.ttwrap .ttpt{margin-left:0;justify-content:flex-end}
+.ttwrap{gap:1.2rem}
+.ttwrap .ttpn{padding:1.6rem 1.8rem;min-height:11rem}
+.ttwrap .ttpl,.ttwrap .ttpt small{font-size:1rem}
+.ttwrap .ttpf{font-size:clamp(2.2rem,3.8vw,4rem);gap:1rem}
+.ttwrap .ttpm .flg{width:clamp(3.4rem,5vw,5rem);height:clamp(3.4rem,5vw,5rem)}
+.ttwrap .ttps{font-size:1.6rem}
+.ttwrap .ttpp{font-size:1.5rem}
+.ttwrap .ttpt b{font-size:clamp(2.4rem,4.2vw,4.4rem)}
+@media(max-width:700px){.ttwrap .ttpn{min-height:0;padding:1.2rem}}
+.ttwrap .ttpl,.ttwrap .ttpt small{font-size:1.4rem;letter-spacing:.08em}
+.ttwrap .ttpf{font-size:clamp(2.8rem,4.8vw,5.2rem)}
+.ttwrap .ttpm .flg{width:clamp(4rem,6vw,6rem);height:clamp(4rem,6vw,6rem)}
+.ttwrap .ttps{font-size:2.2rem}
+.ttwrap .ttpp{font-size:2rem}
+.ttwrap .ttpt b{font-size:clamp(3rem,5vw,5.4rem)}
+.ttwrap .ttpt small{font-size:1rem;letter-spacing:.14em}
+.ttwrap .ttpf{font-size:clamp(2.2rem,3.8vw,4rem)}
+.ttwrap .ttpm .flg{width:clamp(3.4rem,5vw,5rem);height:clamp(3.4rem,5vw,5rem)}
+.ttwrap .ttps{font-size:1.6rem}
+.ttwrap .ttpp{font-size:1.5rem}
+.ttwrap .ttpt b{font-size:clamp(2.4rem,4.2vw,4.4rem)}
+.ttwrap .ttpn{padding:1.3rem 1.5rem;min-height:9.5rem}
+.ttwrap .ttpl{font-size:1.2rem}
+.ttwrap .ttpt small{font-size:.9rem}
+.ttwrap .ttpf{font-size:clamp(1.9rem,3.3vw,3.4rem)}
+.ttwrap .ttpm .flg{width:clamp(3rem,4.3vw,4.3rem);height:clamp(3rem,4.3vw,4.3rem)}
+.ttwrap .ttps{font-size:1.4rem}
+.ttwrap .ttpp{font-size:1.3rem}
+.ttwrap .ttpt b{font-size:clamp(2rem,3.6vw,3.8rem)}
+@media(max-width:700px){.ttwrap .ttpn{min-height:0}}
+.tpclk:not(.ed){cursor:pointer}
+.tpclk .tcl .tk{font-size:1.1rem}
+.tpclk .tcs.dense .tcl .tk{font-size:.95rem}
+.ttwrap .ttcur{border:.2rem solid var(--fc)!important;background:color-mix(in srgb,var(--fc) 12%,var(--p));box-shadow:0 0 1.4rem -.3rem var(--fc)}
+.ttwrap .ttnx{border:.2rem solid transparent!important;opacity:.7}
 </style>
 </head><body><main>
 <div class="top"><button class="rdb" id="rdb" onclick="rdEdit()" title="Round – click to change" hidden></button><div class="brand" id="brand">AGENDA PHASE</div><div class="fi-clock" id="fiClock" aria-label="Finnish local time"><time id="fiClockTime">--:--:--</time></div><div class="ttbox" id="ttBox" hidden></div><button class="ghost xlb" id="xlsb" onclick="copyExcel()" title="Copy game for Excel" hidden>XLS</button><div class="dots" id="dots"></div><div class="tip-ticker" id="tipTicker" hidden aria-label="Twilight Imperium strategy tips"><span class="tip-label">STRATEGY TIP</span><div class="tip-window"><div class="tip-track" id="tipTrack"></div></div></div><span class="apk" id="apk" hidden></span><button class="phb" id="phb" onclick="phClick()" hidden></button><div class="tools" id="tools"><div class="tbtns"><button class="ghost tb" id="rndb" onclick="rndOpen()" title="Pick a random faction"><span class="ti">🎲</span><span class="tl">Randomizer</span></button><button class="elimb tb" id="elimb" onclick="elimOpen()" title="Eliminate a player from the game" hidden><span class="ti">✕</span><span class="tl">Eliminate</span></button><button class="ghost undob tb" id="undob" onclick="undo()" title="Undo the last action" disabled><span class="ti">↶</span><span class="tl">Undo</span></button><button class="ghost logb tb" id="logb" onclick="openLog()" title="View action log"><span class="ti">📜</span><span class="tl">Log</span></button><button class="ghost logb tb" id="lbb" onclick="lbOpen()" title="Series leaderboard from Google Sheets"><span class="ti">🏆</span><span class="tl">Leaderboard</span></button><button class="ghost logb tb" id="thb" onclick="thPick('bg')" title="Background, boxes and font"><span class="ti">🎨</span><span class="tl">Appearance</span></button><button class="ghost tb" id="sob" onclick="soOpen()" title="Secret objectives nobody has scored yet"><span class="ti">🕵️</span><span class="tl">Secrets</span></button><button class="ghost tb" id="pob2" onclick="poOpen()" title="Public objectives not yet revealed"><span class="ti">🎯</span><span class="tl">Upcoming</span></button><button class="ghost tb" id="ptb" onclick="ptOpen()" title="Personal play time of every player" hidden><span class="ti">⏳</span><span class="tl">Playtime</span></button><button class="ghost tb" id="ttoffb" onclick="ttOff()" title="Turn off the Turn tracker for the rest of the game" hidden><span class="ti">⏹</span><span class="tl">Turn tracker off</span></button><button class="ghost tb" id="helpb" onclick="helpOpen()" title="Help"><span class="ti">❓</span><span class="tl">Help</span></button><button class="ghost tb" id="newgb" onclick="if(confirm('Start over?'))reset()" title="Start a new game"><span class="ti">🔄</span><span class="tl">New Game</span></button><span class="zm"><span class="zl">Zoom</span><button class="ghost" title="Zoom out 5%" onclick="zoomBy(-5)">−</button><button class="ghost" id="zoomv" title="Reset zoom to 70%" onclick="zoomSet(70)">100%</button><button class="ghost" title="Zoom in 5%" onclick="zoomBy(5)">＋</button></span></div><button class="ghost tlt" id="tlt" title="Tools" aria-label="Show tools" onclick="this.parentNode.classList.toggle('open')"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="5" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="19" cy="19" r="2"/></g></svg></button></div></div>
@@ -765,7 +833,7 @@ function voteOrder(){const n=S.f.length;let o=S.f.map((x,i)=>i).filter(i=>S.f[i]
  const ar=o.find(i=>F[S.f[i]][0]==='The Argent Flight');if(ar!==undefined)o=[ar,...o.filter(i=>i!==ar)];return o}
 function turnOrder(){
  const o=S.f.map((x,i)=>i).filter(i=>S.f[i]>=0&&((S.sc&&S.sc[i])||[]).length).sort((a,b)=>scMin(a)-scMin(b)||a-b);if(!o.length)return'';
- return '<div class="dr to"><span class="dl">Turn order</span>'+o.map(i=>{const L=S.sc[i],cs=S.cs||{},done=L.every(c=>cs[c]===2);const imgs=typeof SC_IMG==='undefined'?'':L.slice().sort((a,b)=>a-b).filter(c=>SC_IMG[c]).map(c=>{const nm=STRATEGY_CARDS[c]?STRATEGY_CARDS[c][0]:'';return `<img class="tcimg${cs[c]?' pd':''}" src="${SC_IMG[c]}" alt="${esc(nm)}" title="${esc(nm)}${cs[c]?' (played)':''}" draggable="false" onclick="scShow(${c})">`}).join('');return `<span class="toc${done?' dn':''}${S.trk&&S.ta===i?' tcur':''}" style="--fc:${pcol(i)}" title="${esc(fvName(i))}${done?' (passed)':''}">${imgs}${flgX(S.f[i],'')}<b>${esc(nmGet(i)||fvShort(i))}</b>${S.trk?'<span class="tct clkc" data-tmi="'+i+'">'+clkH(fmtH(tmNow(i)))+'</span>':''}</span>`}).join('')+'</div>'}
+ return '<div class="dr to"><span class="dl">Turn order</span>'+o.map(i=>{const L=S.sc[i],cs=S.cs||{},done=L.every(c=>cs[c]===2);const imgs=typeof SC_IMG==='undefined'?'':L.slice().sort((a,b)=>a-b).filter(c=>SC_IMG[c]).map(c=>{const nm=STRATEGY_CARDS[c]?STRATEGY_CARDS[c][0]:'';return `<img class="tcimg${cs[c]?' pd':''}" src="${SC_IMG[c]}" alt="${esc(nm)}" title="${esc(nm)}${cs[c]?' (played)':''}" draggable="false" onclick="scShow(${c})">`}).join('');return `<span class="toc${done?' dn':''}${S.trk&&S.ta===i?' tcur':''}" style="--fc:${pcol(i)}" title="${esc(fvName(i))}${done?' (passed)':''}">${imgs}${flgX(S.f[i],'')}<b>${esc(nmGet(i)||fvShort(i))}</b>${S.trk?'<span class="tct clkc" data-tmi="'+i+'">'+clkH(tcFmt(tmNow(i)))+'</span>':''}</span>`}).join('')+'</div>'}
 function updDots(){try{ttDraw()}catch(e){}if(S.step<3){$('dots').innerHTML='';return}if(S.view==='action'){$('dots').innerHTML=turnOrder();return}const o=voteOrder();
  let h=o.length?'<div class="dr"><span class="dl">Voting order</span>'+o.map(i=>{const k=F[S.f[i]]&&F[S.f[i]][1],src=k&&FLG[fvKey(S.f[i],k)],tt=`${esc(fvName(i))}${i===spIdx()?' (Speaker)':''}`;return src?`<span class="vdl" style="--fc:${pcol(i)}" title="${tt}"><img class="flg" src="${src}" alt="" draggable="false"></span>`:`<i style="--fc:${pcol(i)}" title="${tt}"></i>`}).join('')+'</div>':'';
  if(o.length&&S.step===4&&S.ag&&mode(S.ag)!=='res')h+=`<label class="hk"><input type="checkbox" ${S.hack?'checked':''} onchange="setHack(this.checked)"> Hack Election</label>`;
@@ -1217,7 +1285,7 @@ function renderAction(){try{updDots()}catch(e){}
   ||`<div class="empty">No public objectives yet${S.stat||S.sco?' – add them from the list at the bottom.':' – press Score Points to add them.'}</div>`;
   h+='</div></section></div>';
  if(S.stat)h+=secStrip()+statusBox();
- h+=S.sco&&!S.stat?vpPanel():`<div class="tpanel"><div class="tcs one${S.f.length>=5?' dense':''}" style="--n:${S.f.length}">${S.f.map((x,i)=>{const L=techSorted(i);return `<div class="tc" style="--fc:${pcol(i)}"><div class="tch"><b>${esc(fvName(i))}</b><span class="tui">${techIcons(i,L)}</span></div><div class="tcl">${techCols(i,L.filter(t=>!uuKey(t)))}</div>${S.techEdit?`<select onchange="addTech(${i},this.value)">${techOpts(i)}</select>`:''}</div>`}).join('')}</div><div class="tph" style="justify-content:flex-end;margin:.7rem 0 0"><button class="${S.techEdit?'go':''}" onclick="S.techEdit=!S.techEdit;renderAction()">${S.techEdit?'✓ Done':'✎ Change'}</button></div></div>`;
+ h+=S.sco&&!S.stat?vpPanel():`<div class="tpanel tpclk${S.techEdit?' ed':''}"${S.techEdit?'':' title="Click to edit techs"'} onclick="techPanelClick(event)"><div class="tcs one${S.f.length>=5?' dense':''}" style="--n:${S.f.length}">${S.f.map((x,i)=>{const L=techSorted(i);return `<div class="tc" style="--fc:${pcol(i)}"><div class="tch"><b>${esc(fvName(i))}</b><span class="tui">${techIcons(i,L)}</span></div><div class="tcl">${techCols(i,L.filter(t=>!uuKey(t)))}</div>${S.techEdit?`<select onchange="addTech(${i},this.value)">${techOpts(i)}</select>`:''}</div>`}).join('')}</div>${S.techEdit?'<div class="tph" style="justify-content:flex-end;margin:.7rem 0 0"><button class="go" onclick="event.stopPropagation();S.techEdit=false;renderAction()">✓ Done</button></div>':''}</div>`;
  h+=ttPanel();const pool=g=>{const L=PO.map((q,k)=>[q,k]).filter(([q,k])=>q[1]===g&&!S.obj.some(o=>o.k===k));return L.length?L.map(([q,k])=>`<button class="pob" title="${esc(q[2])}" onclick="addObj(${k})">${esc(q[0])}</button>`).join(''):'<span style="color:var(--m)">All added</span>'};
  const secPool=()=>{const L=SECRET_OBJECTIVES.map((n,i)=>[n,i]).filter(([n])=>{const j=(S.xo||[]).findIndex(x=>x.n===n);return !(j>=0&&S.obj.some(o=>o.k===1000+j))});return L.length?L.map(([n,i])=>`<button class="pob" title="${esc((typeof SO_INFO!=='undefined'&&SO_INFO[n]&&SO_INFO[n][1])||'')}" onclick="addSec(${i})">${esc(n)}</button>`).join(''):'<span style="color:var(--m)">All added</span>'};
  if(S.stat||S.sco)h+=`<div class="pool"><div class="pg"><div class="pgl">Stage I · 1 VP</div><div class="pgb">${pool(1)}</div></div><div class="pg"><div class="pgl">Stage II · 2 VP</div><div class="pgb">${pool(2)}</div></div><div class="pg"><div class="pgl">Secret · 1 VP</div><div class="pgb">${secPool()}</div></div></div>`;
@@ -2335,8 +2403,15 @@ function ttNext(){if(!S||!S.trk||S.view!=='action'||S.stat||!S.ap||(S.ap.state!=
 function ttDraw(){const b=document.getElementById('ttBox');const on=!!(S&&S.trk);const act=on&&S.view==='action';if(b){b.hidden=!act;if(act){const i=S.ta;if(i>=0&&S.f[i]>=0){b.style.setProperty('--fc',pcol(i));b.innerHTML='<span class="ttn">'+flgP(i,'')+esc(nmGet(i)||fvShort(i))+'</span><b id="ttT" class="clkc">'+clkH(fmtH(tmNow(i)))+'</b>'}else b.innerHTML='<span class="ttn">–</span>'}}
  const show=on&&S.step>=3&&S.f.length&&S.f.every(x=>x>=0);['ptb','ttoffb'].forEach(id=>{const e=document.getElementById(id);if(e)e.hidden=!show})}
 function ttpSc(i){const L=((S.sc&&S.sc[i])||[]).slice().sort((a,b)=>a-b),cs=S.cs||{};if(!L.length)return'';return '<div class="ttps">'+L.map(c=>'<span class="'+(cs[c]?'ttpx':'')+'" style="color:'+STRATEGY_CARDS[c][1]+'">'+(c+1)+' '+esc(STRATEGY_CARDS[c][0])+'</span>').join(' / ')+'</div>'}
-function ttPanel(){if(!S||!S.trk||S.stat||S.view!=='action'||(S.sco&&!S.stat))return'';const i=S.ta;if(!(i>=0&&S.f[i]>=0))return'';const nm=nmGet(i);return '<div class="ttpn" id="ttPn" style="--fc:'+pcol(i)+'"><div class="ttpa"><small class="ttpl">Turn '+tnN()+' · now playing</small>'+(nm?'<span class="ttpp">'+esc(nm)+'</span>':'')+'</div><div class="ttpm"><div class="ttpf">'+flgP(i,'')+'<span>'+esc(fvName(i))+'</span></div>'+ttpSc(i)+'</div><div class="ttpt"><small>Time used</small><b id="ttPT" class="clkc">'+clkH(fmtH(tmNow(i)))+'</b></div></div>'}
-function ttTick(){try{if(S&&S.trk)document.querySelectorAll('.tct[data-tmi]').forEach(e=>clkSet(e,fmtH(tmNow(+e.dataset.tmi))))}catch(e){}const q=document.getElementById('ttPT');if(q&&S&&S.trk&&S.ta>=0)clkSet(q,fmtH(tmNow(S.ta)));const t=document.getElementById('ttT');if(t&&S&&S.trk&&S.ta>=0){t.classList.add('clkc');clkSet(t,fmtH(tmNow(S.ta)))}}
+function techPanelClick(e){if(S.techEdit||(e&&e.target&&e.target.closest&&e.target.closest('.tph,button,select')))return;S.techEdit=true;renderAction()}
+function ttNextId(){if(!S||S.ta<0)return -1;const o=tmOrder();if(!o.length)return -1;const k=o.indexOf(S.ta);for(let j=1;j<=o.length;j++){const q=o[(k+j+o.length)%o.length];if(q!==S.ta&&!tmPassed(q))return q}return -1}
+function ttPanel(){if(!S||!S.trk||S.stat||S.view!=='action'||(S.sco&&!S.stat))return'';const i=S.ta;if(!(i>=0&&S.f[i]>=0))return'';const nm=nmGet(i),nx=ttNextId();
+ const cur='<div class="ttpn ttcur" id="ttPn" style="--fc:'+pcol(i)+'"><div class="ttpa"><small class="ttpl">Current turn · '+tnN()+'</small>'+(nm?'<span class="ttpp">'+esc(nm)+'</span>':'')+'</div><div class="ttpm"><div class="ttpf">'+flgP(i,'')+'<span>'+esc(fvName(i))+'</span></div>'+ttpSc(i)+'</div><div class="ttpt"><small>Time used</small><b id="ttPT" class="clkc">'+clkH(fmtH(tmNow(i)))+'</b></div></div>';
+ const ok=nx>=0&&S.f[nx]>=0;
+ const nxt='<div class="ttpn ttnx"'+(ok?' style="--fc:'+pcol(nx)+'"':'')+'><div class="ttpa"><small class="ttpl">Next turn</small></div><div class="ttpm"><div class="ttpf">'+(ok?flgP(nx,'')+'<span>'+esc(fvName(nx))+'</span>':'<span>–</span>')+'</div></div><div></div></div>';
+ return '<div class="ttwrap">'+cur+nxt+'</div>'}
+function tcFmt(ms){const t=Math.max(0,Math.floor(ms/1000)),m=Math.floor(t/60),q=t%60;return String(m).padStart(2,'0')+':'+String(q).padStart(2,'0')}
+function ttTick(){try{if(S&&S.trk)document.querySelectorAll('.tct[data-tmi]').forEach(e=>clkSet(e,tcFmt(tmNow(+e.dataset.tmi))))}catch(e){}const q=document.getElementById('ttPT');if(q&&S&&S.trk&&S.ta>=0)clkSet(q,fmtH(tmNow(S.ta)));const t=document.getElementById('ttT');if(t&&S&&S.trk&&S.ta>=0){t.classList.add('clkc');clkSet(t,fmtH(tmNow(S.ta)))}}
 function ttOff(){if(!S||!S.trk)return;pushUndo();tmBank();S.trk=false;S.tmt0=null;S.ta=-1;ptClose(true);logAction('Turn tracker turned off');chrome();if(S.view==='action'){renderAction()}else{updDots()}}
 function ptOpen(){if(!S||!S.trk)return;tmBank();let m=document.getElementById('ptm');if(!m){m=document.createElement('div');m.id='ptm';m.className='mo';m.onclick=e=>{if(e.target===m)ptClose()};document.body.appendChild(m)}m.style.display='flex';tmSync();ptDraw()}
 function ptDraw(){const m=document.getElementById('ptm');if(!m)return;tmArr();let tot=0;const rows=S.f.map((x,i)=>{if(!(x>=0))return'';const t=tmNow(i);tot+=t;const nm=nmGet(i);return `<div class="ptrow${S.ta===i?' pcur':''}">${flgP(i,'')}<span class="ptn">${esc(fvName(i))}${nm?` <small>${esc(nm)}</small>`:''}</span>${S.ta===i?'<span class="pta">active</span>':''}<span class="ptt">${fmtH(t)}</span></div>`}).join('');
