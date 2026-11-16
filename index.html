@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TIT 1.02</title>
+<title>TIT 1.03</title>
 
 <style>
 :root{--fb:"Segoe UI",system-ui,Roboto,sans-serif;--fs:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--ink:#0a0818;--p:#161330;--p2:#211d44;--bd:#3a3566;--bd2:#2c2850;--g1:#6a3fc055;--g2:#1b8fa04a;--dim:.7;--t:#f1ecdf;--m:#9d98bd;--gold:#e9c46a;--for:#4fd8c4;--ag:#ff7b6b;--ab:#8f8bb0}
@@ -1500,6 +1500,7 @@ function techOpts(i){const have=(S.tech&&S.tech[i])||[],f=FTECH[F[S.f[i]][1]]||[
  h+=og('Unit Upgrade',TECH.white.concat(fu),'white');
  const fl=f.filter(([t])=>!have.includes(t)&&!isUU(t));
  if(fl.length)h+=`<optgroup label="Faction technology">${fl.map(([t,c])=>`<option value="${esc(t)}" style="color:${TECH_COL[c]}">${esc(t)}</option>`).join('')}</optgroup>`;
+ if(F[S.f[i]][1]==='Nekro')S.f.forEach((x,j)=>{if(j===i||!(x>=0))return;const L=(FTECH[F[x][1]]||[]).filter(([t])=>!have.includes(t));if(L.length)h+=`<optgroup label="Nekro: ${esc(fvShort(j))} technology">${L.map(([t,c])=>`<option value="${esc(t)}" style="color:${TECH_COL[c]}">${esc(t)}</option>`).join('')}</optgroup>`});
  return h}
 function addTech(i,name){if(!name)return;if(!S.tech[i])S.tech[i]=[];if(!S.tech[i].includes(name))S.tech[i].push(name);renderAction()}
 function rmTech(i,name){S.tech[i]=(S.tech[i]||[]).filter(t=>t!==name);renderAction()}
