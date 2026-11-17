@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TIT 1.18</title>
+<title>TIT 1.20</title>
 
 <style>
 :root{--fb:"Segoe UI",system-ui,Roboto,sans-serif;--fs:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--ink:#0a0818;--p:#161330;--p2:#211d44;--bd:#3a3566;--bd2:#2c2850;--g1:#6a3fc055;--g2:#1b8fa04a;--dim:.7;--t:#f1ecdf;--m:#9d98bd;--gold:#e9c46a;--for:#4fd8c4;--ag:#ff7b6b;--ab:#8f8bb0}
@@ -2604,7 +2604,7 @@ function ttColName(i){const c=(S.pc&&S.pc[i])||'',f=COLORS.find(x=>x[1].toLowerC
 function ttLang(){try{const v=localStorage.getItem('tiTurnLang');if(v==='en'||v==='fi')return v}catch(e){}return 'fi'}
 function ttBy(){try{return localStorage.getItem('tiTurnBy')==='faction'?'faction':'color'}catch(e){return 'color'}}
 function ttEff(){return ttBy()==='faction'?'en':ttLang()}
-const TT_SAY={'Arborec':'Arborek','Argent':'Argent','Letnev':'Barony','Saar':'Saar','Keleres':'Keleres','Muaat':'Mooaht','Hacan':'Hakkan','Empyrean':'Empyrean','Sol':'Sol','Creuss':'Ghosts','L1Z1X':'Lizix','Mahact':'Mahakt','Mentak':'Mentak','Naalu':'Naloo','Naaz-Rokha':'Naz Roka','Nekro':'Nekro','Nomad':'Nomad','Sardakk':'Sardak','Ul':'Titans','Jol-Nar':'Jol Nar','Cabal':'Vuil Raith','Winnu':'Winnoo','Xxcha':'Ksha','Yin':'Yin','Yssaril':'Issaril','Deepwrought':'Deep Wrought','Ral Nel':'Ral Nel','Last Bastion':'Bastion','Firmament':'Firmament','Crimson':'Crimson'};
+const TT_SAY={'Arborec':'Arborec','Letnev':'Barony','Saar':'Saar','Muaat':'Muaat','Hacan':'Hacan','Sol':'Sol','Creuss':'Ghosts','L1Z1X':'LiZiX','Mentak':'Mentak','Naalu':'Naalu','Nekro':'Nekro','Sardakk':'Sardakk','Jol-Nar':'Jolnar','Winnu':'Winnu','Xxcha':'Xxcha','Yin':'Yin','Yssaril':'Yssaril','Argent':'Argent','Empyrean':'Empyrean','Mahact':'Mahact','Naaz-Rokha':'Naazrokha','Nomad':'Nomad','Ul':'Titans','Cabal':'Vuilraith','Keleres':'Keleres','Crimson':'Crimson','Deepwrought':'Deepwrought','Firmament':'Firmament','Last Bastion':'Bastion','Ral Nel':'Ralnel','Axis':'Axis','Bentor':'Bentor','Celdauri':'Celdauri','Cheiran':'Cheiran','Cymiae':'Cymiae','Dih-Mohn':'Dihmohn','Edyn':'Edyn','Florzen':'Florzen','Free Systems':'Freesystems','Ghemina':'Ghemina','Ghoti':'Ghoti','GLEdge':'Gledge','Ilyxum':'Ilyxum','Kjalengard':'Kjalengard','Kollecc':'Kollecc','Kolume':'Kolume','Kortali':'Kortali','Kyro':'Kyro','Lanefir':'Lanefir','Li-Zho':'Lizho','Khrask':'Ltokk','Mirveda':'Mirveda','Mortheus':'Mortheus','Myko-Mentori':'Myko','Nivyn':'Nivyn','Nokar':'Nokar','Olradin':'Olradin','Rhodun':'Rhodun','RohDhna':'Rohdhna','Tnelis':'Tnelis','Vaden':'Vaden','Vaylerian':'Vaylerian','Veldyr':'Veldyr','Zelian':'Zelian'};
 function ttFacSay(i){const x=S.f[i];const k=F[x]&&F[x][1];return TT_SAY[k]||(F[x]?F[x][1]:'')||'player'}
 function ttVKey(){return 'tiTurnVoiceName_'+ttEff()}
 function ttVoices(){try{const re=new RegExp('^'+ttEff(),'i');return (speechSynthesis.getVoices()||[]).filter(v=>re.test(v.lang))}catch(e){return[]}}
