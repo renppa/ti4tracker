@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TIT 1.22</title>
+<title>TIT 1.23</title>
 
 <style>
 :root{--fb:"Segoe UI",system-ui,Roboto,sans-serif;--fs:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--ink:#0a0818;--p:#161330;--p2:#211d44;--bd:#3a3566;--bd2:#2c2850;--g1:#6a3fc055;--g2:#1b8fa04a;--dim:.7;--t:#f1ecdf;--m:#9d98bd;--gold:#e9c46a;--for:#4fd8c4;--ag:#ff7b6b;--ab:#8f8bb0}
@@ -2588,7 +2588,7 @@ function rtNext(){if(!RTS)return;const sp=RT_STEPS[RTS.step];if(RTS.sel[RTS.step
 function rtUnlock(k){const o=S.obj.find(x=>x.k===k);if(!o||!o.lk)return;pushUndo();o.lk=false;try{logAction('Objective unlocked',poG(k)[0])}catch(e){}renderAction()}
 var TTAC=null;
 const TT_SND=[['chime','Chime'],['bell','Bell'],['ping','Ping'],['iphone','iPhone-style'],['android','Android-style'],['arp','Arpeggio'],['off','Silent']];
-function ttPref(){try{const v=localStorage.getItem('tiTurnSnd');if(v&&TT_SND.some(x=>x[0]===v))return v}catch(e){}return 'chime'}
+function ttPref(){try{const v=localStorage.getItem('tiTurnSnd');if(v&&TT_SND.some(x=>x[0]===v))return v}catch(e){}return 'off'}
 function ttSound(id){id=id||ttPref();if(id==='off')return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!TTAC)TTAC=new AC();if(TTAC.state==='suspended')TTAC.resume();const t0=TTAC.currentTime+.02;
  const tone=(f,d,len,type,peak)=>{const o=TTAC.createOscillator(),g=TTAC.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,t0+d);g.gain.linearRampToValueAtTime(peak,t0+d+.015);g.gain.exponentialRampToValueAtTime(.0005,t0+d+len);o.connect(g);g.connect(TTAC.destination);o.start(t0+d);o.stop(t0+d+len+.05)};
  if(id==='bell'){tone(520,0,1.5,'sine',.26);tone(520*2.76,0,.9,'sine',.1);tone(520*5.4,0,.5,'sine',.05)}
@@ -2602,7 +2602,7 @@ function taDraw(){const m=document.getElementById('tam');if(!m)return;const cur=
 function ttVoicePick(){const L=ttVoices();let sel='';try{sel=localStorage.getItem(ttVKey())||''}catch(e){}const auto=ttVoice();
  if(!L.length)return `<div class="tav tavs"><span>Voice<small>No ${ttEff()==='fi'?'Finnish':'English'} voice found on this device</small></span></div>`;
  return `<div class="tav tavs"><span>Voice<small>${auto&&!sel?'Auto: '+esc(auto.name):'Pick the most natural-sounding one'}</small></span><select onchange="taVoiceSel(this.value)"><option value="">Auto (best available)</option>${L.slice().sort((a,b)=>ttVScore(b)-ttVScore(a)).map(v=>`<option value="${esc(v.name)}"${v.name===sel?' selected':''}>${esc(v.name)}</option>`).join('')}</select></div>`}
-function ttVoiceOn(){try{return localStorage.getItem('tiTurnVoice')!=='0'}catch(e){return true}}
+function ttVoiceOn(){try{return localStorage.getItem('tiTurnVoice')==='1'}catch(e){return false}}
 function ttColName(i){const c=(S.pc&&S.pc[i])||'',f=COLORS.find(x=>x[1].toLowerCase()===String(c).toLowerCase());return f?f[0]:(nmGet(i)||fvShort(i))}
 function ttLang(){try{const v=localStorage.getItem('tiTurnLang');if(v==='en'||v==='fi')return v}catch(e){}return 'fi'}
 function ttBy(){try{return localStorage.getItem('tiTurnBy')==='faction'?'faction':'color'}catch(e){return 'color'}}
