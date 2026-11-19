@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TIT 1.31</title>
+<title>TIT 1.33</title>
 
 <style>
 :root{--fb:"Segoe UI",system-ui,Roboto,sans-serif;--fs:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--ink:#0a0818;--p:#161330;--p2:#211d44;--bd:#3a3566;--bd2:#2c2850;--g1:#6a3fc055;--g2:#1b8fa04a;--dim:.7;--t:#f1ecdf;--m:#9d98bd;--gold:#e9c46a;--for:#4fd8c4;--ag:#ff7b6b;--ab:#8f8bb0}
@@ -697,7 +697,10 @@ button:not(:disabled):active{scale:.96}
 .lwrow2 .lwt1{display:flex;align-items:center;gap:.5rem;font-weight:600}
 .lwrow2 .lwt1 .flg{width:1.6rem;height:1.6rem;object-fit:contain}
 .lwrow2 .lwd{color:var(--m);font-size:.78em;font-weight:400;line-height:1.3;margin-top:.15rem}
-.ocL{min-height:18rem!important}
+.ocL{min-height:0!important}
+.og:not(.lkg){grid-auto-rows:1fr!important;align-items:stretch!important}
+.og:not(.lkg)>.oc{height:100%;box-sizing:border-box}
+.og .oc.ocL{min-height:12rem!important}
 .ocL .lwrow2{font-size:1.05rem}
 .tvm{align-items:start!important}.sbl{flex:none!important;grid-auto-rows:minmax(4.3rem,auto)!important}
 .ttbox{display:inline-flex;align-items:center;gap:.8rem;padding:.1rem .8rem;line-height:1.1;border:.12rem solid var(--gold);border-radius:.6rem;background:#100d25;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -2528,7 +2531,7 @@ function ttpSc(i){const L=((S.sc&&S.sc[i])||[]).slice().sort((a,b)=>a-b),cs=S.cs
 function dsToggle(){return '<button type="button" class="trk dsb'+(S.ds?' on':'')+'" aria-pressed="'+(S.ds?'true':'false')+'" onclick="S.ds=!S.ds;go()"><span class="trkt"><b>Include DS factions</b><small>Discordant Stars factions are listed below the normal ones</small></span><span class="trks"><i></i></span></button>'}
 function techPanelClick(e){if(S.techEdit||(e&&e.target&&e.target.closest&&e.target.closest('.tph,button,select')))return;S.techEdit=true;renderAction()}
 function lwToggle(){return '<button type="button" class="trk rtb lwb'+(S.lw?' on':'')+'" aria-pressed="'+(S.lw?'true':'false')+'" onclick="S.lw=!S.lw;renderAction()"><span class="trkt"><b>Laws in play</b></span><span class="trks"><i></i></span></button>'}
-function lawCard(){if(!S.lw)return'';const L=S.laws||[];return '<div class="oc ocL" style="--tc:var(--gold)"><div class="lwin2"><div class="och"><span class="stg">Laws in play</span></div>'+(L.length?L.map(l=>{return lawRowHtml(l)}).join(''):'<div class="ocr">No laws in play</div>')+'</div></div>'}
+function lawCard(){if(!S.lw)return'';requestAnimationFrame(lawFit);const L=S.laws||[];return '<div class="oc ocL" style="--tc:var(--gold)"><div class="lwin2"><div class="och"><span class="stg">Laws in play</span></div>'+(L.length?L.map(l=>{return lawRowHtml(l)}).join(''):'<div class="ocr">No laws in play</div>')+'</div></div>'}
 function ocCard(o,n){const q=poG(o.k);return `<div class="oc s${q[1]}${o.lk?' lk':''}"><div class="och"><span class="stg">${q[3]||('Stage '+(q[1]==1?'I':'II'))}</span><span class="cnt">${q[1]} VP · ${o.s.length}/${n}</span>${S.sco?'<button class="rm" title="Remove objective" onclick="rmObj('+o.k+')">✕</button>':''}</div>${o.lk?`<button class="lkb" title="Locked (red tape) – click to unlock" aria-label="Locked – click to unlock" onclick="rtUnlock(${o.k})"></button>`:''}<div class="ocn">${esc(q[0])}</div><div class="ocr">${esc(q[2])}</div>${`<div class="ocs">${S.f.map((x,i)=>{const on=o.s.includes(i);return `<button class="pch ${on?'on':''}" style="--fc:${pcol(i)};--ik:${inkOn(pcol(i))}" title="${esc(fvName(i))}" aria-label="${esc(fvName(i))}" onclick="togScore(${o.k},${i})">${flgX(x,'fl-chip')}</button>`}).join('')}</div>`}</div>`}
 function ttNextId(){if(!S||S.ta<0)return -1;const o=tmOrder();if(!o.length)return -1;const k=o.indexOf(S.ta);for(let j=1;j<=o.length;j++){const q=o[(k+j+o.length)%o.length];if(q!==S.ta&&!tmPassed(q))return q}return -1}
 function ttPanel(){if(!S||!S.trk||S.stat||S.view!=='action'||(S.sco&&!S.stat))return'';const i=S.ta;if(!(i>=0&&S.f[i]>=0))return'';const nm=nmGet(i),nx=ttNextId();
@@ -2650,5 +2653,10 @@ const LAW_S_ABS={"Affirmation of Divine Right": "Mecatol Rex is legendary; other
 const LAW_S_ORIG={"Anti-Intellectual Revolution": "After researching a technology, destroy one non-fighter ship.", "Articles of War": "Mechs lose their abilities except Sustain Damage.", "Checks and Balances": "Players give their chosen strategy card to another player.", "Classified Document Leaks": "An elected secret objective became public.", "Committee Formation": "Owner may choose the elected player instead of voting.", "Conventions of War": "Bombardment cannot target units on cultural planets.", "Enforced Travel Ban": "Alpha and beta wormholes have no effect on movement.", "Executive Sanctions": "Action card hand limit is 3.", "Fleet Regulations": "Fleet pool limit is 4 command tokens.", "Homeland Defense Act": "Any number of PDS allowed on planets.", "Imperial Arbiter": "Owner may swap a strategy card at the end of the Strategy Phase.", "Minister of Commerce": "+1 trade good per neighbor when replenishing commodities.", "Minister of Exploration": "+1 trade good whenever gaining control of a planet.", "Minister of Industry": "May use production abilities when placing a space dock.", "Minister of Peace": "May end another player’s turn after they activate a system.", "Minister of Policy": "Draws 1 action card at the end of each Status Phase.", "Minister of Sciences": "No resources spent when researching via the Technology card.", "Minister of War": "May discard to take another action after an action.", "Nexus Sovereignty": "Wormhole Nexus wormholes have no effect on movement.", "Political Censure": "Owner has +1 VP but cannot play action cards.", "Prophecy of Ixth": "Fighters +1 to combat; discarded unless 2+ fighters produced.", "Publicize Weapon Schematics": "War Sun prerequisites ignored; War Suns lose Sustain Damage.", "Regulated Conscription": "1 fighter and 1 infantry for the cost of two.", "Representative Government": "Planets cannot be exhausted for votes; 1 vote each.", "Search Warrant": "Owner drew 2 secret objectives, kept revealed.", "Shared Research": "Units may move through nebulae.", "Wormhole Reconstruction": "Systems with alpha or beta wormholes are adjacent."};
 function lawShort(l){const m=S.dk==='orig'?Object.assign({},LAW_S_ABS,LAW_S_ORIG):LAW_S_ABS;return m[l.n]||''}
 function lawRowHtml(l){const o=l.own>=0&&S.f[l.own]>=0?flgP(l.own,''):'';const d=lawShort(l);return '<div class="lwrow2"><div class="lwt1"><span>'+esc(l.n)+'</span>'+o+'</div>'+(d?'<div class="lwd">'+esc(d)+'</div>':'')+'</div>'}
+
+/* ===== Laws in play card grows (spans extra rows) only when its content needs more room ===== */
+function lawFit(){try{const c=document.querySelector('.og .oc.ocL');if(!c)return;const inner=c.querySelector('.lwin2');if(!inner)return;
+ for(let n=1;n<=5;n++){c.style.gridRow=n>1?'span '+n:'';if(inner.scrollHeight<=inner.clientHeight+1)break}}catch(e){}}
+window.addEventListener('resize',()=>requestAnimationFrame(lawFit));
 </script>
 </body></html>
