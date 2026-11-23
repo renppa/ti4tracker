@@ -872,6 +872,67 @@ button:not(:disabled):active{scale:.96}
 .tvc button.lwb:hover,.tvc button.lwb.on:hover{background:linear-gradient(160deg,#3a3012,var(--p));color:var(--t);border-color:var(--gold)}
 .tvc button.lwb:hover .trkt b,.tvc button.lwb.on .trkt b{color:var(--gold)}
 </style>
+<style>
+/* ---- new: bigger vote numbers ---- */
+.vav{display:flex;align-items:baseline;gap:.6rem;font-size:1rem;opacity:1;margin:.3rem 0 .5rem}
+.vav b{font-family:var(--fs);font-size:3.8rem;line-height:1;color:var(--gold)}
+.sv output{font-size:4.2rem;min-width:5.5rem}
+.tvp{font-weight:600;color:var(--gold);font-size:.85em}
+.vbk .psbx{color:#ff9b8a}
+/* ---- Political Secret ---- */
+.psb{width:100%;margin:.5rem 0 0;padding:.35rem .7rem;font-size:.85rem;border-radius:.7rem;border:.1rem dashed var(--bd);background:transparent}
+.psb.on{border-style:solid;border-color:#ff9b8a;color:#ff9b8a}.psb b{margin-left:.3rem}
+.psw{max-width:30rem}.pschips{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 .8rem}
+.pschips .chip{border-left:.35rem solid var(--fc)}.pschips .chip.on{background:var(--fc);color:#0a0818;font-weight:700}
+.psrow{display:flex;align-items:center;gap:.6rem;margin:.4rem 0 .8rem}.psrow input{width:6rem;text-align:center;font-size:2rem;font-family:var(--fs)}
+.psrow button{width:3rem;height:3rem;border-radius:50%;font-size:1.5rem;padding:0}.psv{color:var(--m)}
+.psact{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.2rem 0 .8rem;color:var(--m)}
+.psl{display:inline-flex;align-items:center;gap:.3rem;padding:.15rem .3rem .15rem .6rem;border-radius:.6rem;border-left:.3rem solid var(--fc);background:var(--p2);color:var(--t)}
+.psl button{padding:0 .35rem;font-size:.8rem;border-radius:.4rem}
+/* ---- Covert Legislation ---- */
+.covrow{display:flex;gap:1rem;align-items:flex-start}.covopts{display:flex;flex-direction:column;gap:.35rem;flex:none;min-width:9rem}
+.covl{color:var(--m);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em}
+.covb{text-align:left;padding:.4rem .7rem;font-size:.95rem;border-radius:.7rem}.covb.on{background:var(--gold);color:#201400;font-weight:700;border-color:var(--gold)}
+.covrow .txt{flex:1;min-width:0}
+/* ---- law removal cross ---- */
+.lwx{margin-left:auto;flex:none;padding:0 .45rem;font-size:.85rem;line-height:1.3;border-radius:.5rem;opacity:.65}.lwx:hover{opacity:1;color:#ff9b8a}
+.lwt1{display:flex;align-items:center;gap:.4rem}.lwh .lwx{margin-left:.5rem}
+/* ---- strategy window: compact + objectives side panel ---- */
+.mb.sw.stw{width:min(72rem,100%);padding:.8rem 1rem}
+.stw .mh h3{font-size:1.5rem}
+.stwrap{display:grid;grid-template-columns:minmax(0,1fr) 17rem;gap:.9rem;align-items:start}
+.stw .stsp{margin:.2rem 0}.stw .stsp select{font-size:.9rem;padding:.2rem .4rem}.stw .stg{gap:.3rem}
+.stw .str{grid-template-columns:12.5rem 2.4rem 1fr;padding:.25rem .5rem;gap:.4rem;border-radius:.6rem;font-size:.9rem}.stw .str>b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.82rem}.stw .stc{font-size:.85rem}
+.stw .scb{font-size:.8rem;padding:.18rem .42rem}.stw .stb{gap:.25rem}
+.stw .stbn{font-size:1.05rem;padding:.3rem .7rem;margin:.2rem 0}.stw .act{margin-top:.6rem}
+.stobj{position:sticky;top:0;display:flex;flex-direction:column;gap:.4rem;padding:.5rem .6rem;border:.1rem solid var(--bd);border-radius:.8rem;background:var(--p2);max-height:70vh;overflow:auto}
+.stoh{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:700}
+.sto{padding:.35rem .5rem;border-radius:.6rem;background:var(--p);border-left:.25rem solid var(--gold)}.sto.s2{border-left-color:#ff9b5a}
+.stot{display:flex;justify-content:space-between;font-size:.72rem;color:var(--m);text-transform:uppercase;letter-spacing:.06em}
+.ston{font-family:var(--fs);font-size:1.05rem;line-height:1.15}.stox{font-size:.8rem;color:var(--m);line-height:1.3}
+.stof{display:flex;gap:.2rem;margin-top:.2rem}.stof .flg{height:1.2rem;width:1.2rem;object-fit:contain}
+@media(max-width:900px){.stwrap{grid-template-columns:1fr}.stobj{position:static;max-height:none}.stw .str{grid-template-columns:1fr auto}}
+@media(max-width:720px){.covrow{flex-direction:column}.covopts{flex-direction:row;flex-wrap:wrap;min-width:0}.vav b{font-size:3rem}.sv output{font-size:3.4rem}}
+</style>
+<style>
+/* ---- strategy window: near full-screen, large, opaque backdrop ---- */
+#stm{background:#07051a;padding:.4rem}
+.mb.sw.stw{width:100%;max-width:none;height:calc(98vh / var(--zm,1));max-height:none;padding:1.1rem 1.6rem;display:flex;flex-direction:column;border-radius:1rem}
+.stw .mh h3{font-size:2.2rem}
+.stw .stsp{margin:.4rem 0}.stw .stsp select{font-size:1.1rem;padding:.3rem .6rem}.stw .stsp label,.stw .stsp .tag{font-size:1.05rem}
+.stw .stbn{font-size:1.9rem;padding:.55rem 1.1rem;margin:.4rem 0}
+.stw .stwrap{flex:1;min-height:0;grid-template-columns:minmax(0,1fr) 27rem;gap:1.4rem;align-items:stretch}
+.stw .stmain{display:flex;flex-direction:column;min-height:0;overflow:auto}
+.stw .stg{gap:.6rem}
+.stw .str{grid-template-columns:19rem 4.5rem 1fr;padding:.6rem .9rem;gap:.8rem;border-radius:.9rem}
+.stw .str>b{font-size:1.2rem}.stw .stc{font-size:1.2rem}
+.stw .stb{gap:.45rem}.stw .scb{font-size:1.15rem;padding:.45rem .85rem;border-radius:.7rem}
+.stw .stobj{position:static;max-height:none;overflow:auto;padding:.9rem 1rem;gap:.7rem}
+.stw .stoh{font-size:1.05rem}
+.stw .sto{padding:.6rem .8rem}.stw .stot{font-size:.9rem}.stw .ston{font-size:1.5rem}.stw .stox{font-size:1.05rem}.stw .stof .flg{height:1.6rem;width:1.6rem}
+.stw .act{margin-top:.8rem}.stw .act button{font-size:1.2rem;padding:.6rem 1.4rem}
+@media(max-width:1100px){.stw .stwrap{grid-template-columns:1fr;overflow:auto}.stw .stmain{overflow:visible}.stw .str{grid-template-columns:1fr auto}.stw .stb{grid-column:1/-1}}
+</style>
 </head><body><main>
 <div class="top"><button class="rdb" id="rdb" onclick="rdEdit()" title="Round – click to change" hidden></button><div class="brand" id="brand">AGENDA PHASE</div><div class="ttbox" id="ttBox" hidden></div><button class="ghost xlb" id="xlsb" onclick="copyExcel()" title="Copy game for Excel" hidden>XLS</button><div class="dots" id="dots"></div><div class="tip-ticker" id="tipTicker" hidden aria-label="Twilight Imperium strategy tips"><span class="tip-label">STRATEGY TIP</span><div class="tip-window"><div class="tip-track" id="tipTrack"></div></div></div><span class="apk" id="apk" hidden></span><button class="phb" id="phb" onclick="phClick()" hidden></button><div class="tools" id="tools"><div class="tbtns"><button class="ghost tb" id="rndb" onclick="rndOpen()" title="Pick a random faction"><span class="ti">🎲</span><span class="tl">Randomizer</span></button><button class="elimb tb" id="elimb" onclick="elimOpen()" title="Eliminate a player from the game" hidden><span class="ti">✕</span><span class="tl">Eliminate</span></button><button class="ghost undob tb" id="undob" onclick="undo()" title="Undo the last action" disabled><span class="ti">↶</span><span class="tl">Undo</span></button><button class="ghost logb tb" id="logb" onclick="openLog()" title="View action log"><span class="ti">📜</span><span class="tl">Log</span></button><button class="ghost logb tb" id="lbb" onclick="lbOpen()" title="Series leaderboard from Google Sheets"><span class="ti">🏆</span><span class="tl">Leaderboard</span></button><button class="ghost logb tb" id="thb" onclick="thPick('bg')" title="Background, boxes and font"><span class="ti">🎨</span><span class="tl">Appearance</span></button><button class="ghost tb" id="sob" onclick="soOpen()" title="Secret objectives nobody has scored yet"><span class="ti">🕵️</span><span class="tl">Secrets</span></button><button class="ghost tb" id="pob2" onclick="poOpen()" title="Public objectives not yet revealed"><span class="ti">🎯</span><span class="tl">Upcoming</span></button><button class="ghost tb" id="tab" onclick="taOpen()" title="Choose the sound played when the turn changes" hidden><span class="ti">♪</span><span class="tl">Turn audio</span></button><button class="ghost tb" id="ptb" onclick="ptOpen()" title="Personal play time of every player" hidden><span class="ti">⏳</span><span class="tl">Playtime</span></button><button class="ghost tb" id="ttoffb" onclick="ttOff()" title="Turn off the Turn tracker for the rest of the game" hidden><span class="ti">⏹</span><span class="tl">Turn tracker off</span></button><button class="ghost tb" id="helpb" onclick="helpOpen()" title="Help"><span class="ti">❓</span><span class="tl">Help</span></button><button class="ghost tb" id="newgb" onclick="if(confirm('Start over?'))reset()" title="Start a new game"><span class="ti">🔄</span><span class="tl">New Game</span></button><span class="zm"><span class="zl">Zoom</span><button class="ghost" title="Zoom out 5%" onclick="zoomBy(-5)">−</button><button class="ghost" id="zoomv" title="Reset zoom to 70%" onclick="zoomSet(70)">100%</button><button class="ghost" title="Zoom in 5%" onclick="zoomBy(5)">＋</button></span></div><button class="ghost tlt" id="tlt" title="Tools" aria-label="Show tools" onclick="this.parentNode.classList.toggle('open')"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><circle cx="5" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="19" cy="19" r="2"/></g></svg></button></div></div>
 <div id="app"></div><div class="logmodal" id="logmodal" onclick="if(event.target===this)closeLog()"><div class="logbox"><div class="loghead"><h3>Action Log</h3><button class="ghost logb" onclick="closeLog()">Close</button></div><div id="logentries"></div></div></div></main>
@@ -974,8 +1035,8 @@ function go(){try{if(S&&S.rt&&typeof S.rt==='object'){S.rtn=Object.assign(S.rtn|
   A.innerHTML='<h2>Choose factions</h2>'+(sm?'':'<div class="seatnote"><b>Choose all factions first, then set the Speaker.</b> The selected Speaker becomes <b>Player 1</b>. Player 2 sits immediately to the Speaker’s left; continue clockwise with Player 3, Player 4, and so on up to Player 8 as needed. Voting order and all “player to your left” effects follow this seating order. You can change the Speaker manually using the dropdown; the player order will update automatically.</div>')+goalRow()+rtToggle()+(sm?(S.f.every(x=>x>=0)?namesBtn():''):vdSetupRow()+spk2Row())+'<div class="slots">'+S.f.map((x,i)=>`<div class="slot ${x>=0?'set':''} ${S.cur==i?'cur':''}" style="--fc:${pcol(i)}" onclick="S.cur=${i};S.cp=(S.f[${i}]>=0?${i}:null);go()"><small>Player ${i+1}</small><b>${x>=0?esc(fvKey(x,F[x][1])):'—'}</b>${x>=0?`<i class="sdot" title="Change colour" onclick="event.stopPropagation();S.cp=${i};go()"></i>`:''}</div>`).join('')+'</div>'+(S.cp!==null&&S.f[S.cp]>=0?`<div class="cpick"><div class="cpt">Choose a colour for Player ${S.cp+1} · ${esc(fvKey(S.f[S.cp],F[S.f[S.cp]][1]))}</div><div class="cpr">${colorsFor(S.f[S.cp]).map(([nm,hx])=>{const ow=S.pc.indexOf(hx),tk=ow>=0&&ow!==S.cp;const r=recOf(S.f[S.cp],nm);return `<button class="cpb ${S.pc[S.cp]===hx?'on':''} ${r?'rc'+r.tier:''}" ${tk?'disabled':''} style="--fc:${hx}" onclick="setColor(${S.cp},'${hx}')"><i></i>${nm}${r?`<em class="rec">${REC_L[r.tier]}${r.tier==0&&r.pct!=null?' '+r.pct+'%':''}</em>`:''}${tk?'<em class="rec">taken</em>':''}</button>`}).join('')}<button onclick="S.cp=null;go()">Skip</button></div></div>`:'')+'<div class="tiles">'+F.map((f,j)=>(j===0?'<div class="tsec">Base Game</div>':'')+(j===FBASE?'<div class="tsec">Discordant Stars</div>':'')+`<button class="tile ${S.f.includes(j)&&S.f[S.cur]!=j?'tk':''}" style="--fc:${f[2]}" onclick="pf(${j})">${FLG[f[1]]?`<img class="flg" src="${FLG[f[1]]}" alt="" draggable="false">`:''}<span>${esc(f[0])}</span></button>`).join('')+`</div><div class="act"><button onclick="S.step=1;go()">← Back</button>${sm?'':'<button onclick="openDraft()">Nucleum Draft Order</button>'}<button class="go" ${ok?'':'disabled'} onclick="${sm?'rtGate(()=>stOpen(simpleStart))':'rtGate(()=>{pushUndo();vdStart();S.step=3;stOpen(foOpen)})'}">${sm?'Start':'Start Strategy Phase'}</button></div>`;}
  else if(S.step==3){if(vdOn()){vdEnter();return}if(spIdx()<0)S.sp='';A.innerHTML=`<h2>Choose an agenda</h2>${agInfoBar()}<div class="spkrow"><label for="spk">Speaker</label><select id="spk" onchange="S.sp=this.value;updDots();fl()"><option value="">Choose speaker…</option>${S.f.map((x,i)=>`<option value="${i}" ${spIdx()===i?'selected':''}>${i+1}. ${esc(F[x][0])}</option>`).join('')}</select><div class="tms"><span class="timer">⏱ Total Time <b id="gtm">${fmtH(gtNow())}</b></span><span class="timer">⏱ Total Agenda Time <b>${fmtH(S.tt||0)}</b></span></div></div><input id="q" type="text" placeholder="Search agendas…" value="${esc(S.q)}" oninput="S.q=this.value;fl()"><div class="ags" id="list"></div><div class="act"><button onclick="S.view='action';go()">← Action Phase</button></div>`;fl();}
  else{if(vdOn()&&S.vd.currentAgenda==null){vdResolvedScreen();return}const a=S.ag,m=mode(a),tc=TC[a.t]||'#9d98bd';
-  A.innerHTML=`${vdOn()?vdBanner():agInfoBar()}${m=='res'?'':'<div class="fv" id="fv"></div>'}<div class="vote" style="--tc:${tc}"><div><div class="panel"><span class="timer">⏱ <b id="tmr">00:00</b></span><span class="tag">${esc(a.t)}</span>${a.e?`<span class="tag" style="--tc:#fff">Elect: ${esc(a.e)}</span>`:''}<div class="ttl">${esc(a.n)}</div><div class="txt">${esc(a.x)}</div></div>${m=='res'?'':'<div class="panel sum" id="sm" style="margin-top:1.2rem"></div>'}</div><div>${m=='res'?'<div class="panel txt">No voting on this card.</div>':'<div class="seats" id="vb"></div>'}</div></div><div class="rider-info" id="riderInfo"><h3>Rider reference</h3><p>Select a Rider in a faction's voting panel to see its effect here.</p></div>${vdOn()?vdActBar(m):`<div class="act"><button onclick="addT();S.step=3;go()">← Change agenda</button><span style="display:flex;gap:1rem"><button onclick="agSkip()">Agenda complete</button><button class="go" id="rb" ${m=='res'?'hidden':''} disabled onclick="resolveAg()">Resolve Agenda</button></span></div>`}`;
-  startTimer();if(m!='res'){S.v=S.f.map(()=>({votes:0,c:null,riders:[]}));rv();updateRiderInfo();renderFV();}}
+  A.innerHTML=`${vdOn()?vdBanner():agInfoBar()}${m=='res'?'':'<div class="fv" id="fv"></div>'}<div class="vote" style="--tc:${tc}"><div><div class="panel"><span class="timer">⏱ <b id="tmr">00:00</b></span><span class="tag">${esc(a.t)}</span><span class="tag" id="etag" style="--tc:#fff"${a.e?'':' hidden'}>Elect: ${esc(a.e||'')}</span><div class="ttl">${esc(a.n)}</div>${covBox(a)}</div>${m=='res'?'':'<div class="panel sum" id="sm" style="margin-top:1.2rem"></div>'}</div><div>${m=='res'?'<div class="panel txt">No voting on this card.</div>':'<div class="seats" id="vb"></div>'}</div></div><div class="rider-info" id="riderInfo"><h3>Rider reference</h3><p>Select a Rider in a faction's voting panel to see its effect here.</p></div>${vdOn()?vdActBar(m):`<div class="act"><button onclick="addT();S.step=3;go()">← Change agenda</button><span style="display:flex;gap:1rem"><button onclick="agSkip()">Agenda complete</button><button class="go" id="rb" ${m=='res'?'hidden':''} disabled onclick="resolveAg()">Resolve Agenda</button></span></div>`}`;
+  startTimer();if(m!='res'){S.ps={};S.v=S.f.map(()=>({votes:0,c:null,riders:[]}));rv();updateRiderInfo();renderFV();}}
 }
 function simpleStart(){if(!S.f.every(x=>x>=0))return;pushUndo();if(spIdx()<0)S.sp='0';S.step=3;S.sc=S.f.map(()=>[]);S.cs={};S.stat=false;S.sco=false;S.view='action';apBegin();syncClock();go()}
 function pf(j){const i=S.cur;S.f[i]=j;S.pa=S.pa||[];if(!S.pc[i]||S.pa[i]!==false){S.pc[i]=autoCol(j,i);S.pa[i]=true}S.cp=i;const e=S.f.findIndex(x=>x<0);S.cur=e>=0?e:i;if(e<0&&spIdx()<0)S.sp='0';go()}
@@ -996,10 +1057,10 @@ function rv(){const a=S.ag,m=mode(a);$('vb').style.gridTemplateColumns=S.f.lengt
    else ctl=`<input type="text" placeholder="${esc(a.e)}…" value="${ab?'':esc(v.c||'')}" oninput="st(${i},this.value)">`;
   const nov=NOV(v,i);
    const predOpts=(a.e==='Player'||a.e==='Planet'||a.e==='Non-home, non-Rex planet'||a.e==='Strategy Card'||a.e==='Scored Secret Objective'||a.e==='Law'||a.e==='Owned Unit Upgrade')?['Elect: '+(a.e||'outcome')]:['For','Against'];
-   return `<div class="seat" id="r${i}" style="--fc:${pcol(i)}"><div class="sh"><b>${flgX(x,'fl-md')}${esc(F[x][0])}</b>${spTag(i)}<span class="st" id="s${i}"></span></div>${xaBox(i)}${dsBox(i)}${vav(i)}<div class="sv"><button ${nov?'disabled':''} onclick="sv(${i},-1)">−1</button><output id="n${i}">${v.votes}</output><button ${nov?'disabled':''} onclick="sv(${i},1)">+1</button><button ${nov?'disabled':''} onclick="sv(${i},5)">+5</button>${piBtn(i,nov)}</div><div class="vbk" id="bk${i}"></div><div class="sc">${nov?'':ctl+(ctl?'':'')}<button ${nov?'disabled':''} style="--bc:var(--ab)" class="${ab?'on':''}" onclick="sc(${i},'${ABS}')">Abstain</button></div>${riderUI(i,a,m)}</div>`}).join('');sm();}
+   return `<div class="seat" id="r${i}" style="--fc:${pcol(i)}"><div class="sh"><b>${flgX(x,'fl-md')}${esc(F[x][0])}</b>${spTag(i)}<span class="st" id="s${i}"></span></div>${xaBox(i)}${dsBox(i)}${vav(i)}<div class="sv"><button ${nov?'disabled':''} onclick="sv(${i},-1)">−1</button><output id="n${i}">${v.votes}</output><button ${nov?'disabled':''} onclick="sv(${i},1)">+1</button><button ${nov?'disabled':''} onclick="sv(${i},5)">+5</button>${piBtn(i,nov)}</div><div class="vbk" id="bk${i}"></div><div class="sc">${nov?'':ctl+(ctl?'':'')}<button ${nov?'disabled':''} style="--bc:var(--ab)" class="${ab?'on':''}" onclick="sc(${i},'${ABS}')">Abstain</button></div>${riderUI(i,a,m)}${psBtn(i)}</div>`}).join('');sm();}
 function predOpts(a,m){return m==='fa'?['For','Against']:m==='pl'?S.f.map(y=>'Elect: '+F[y][1]):a.e==='Planet'||a.e==='Non-home, non-Rex planet'?PLANETS.map(p=>'Elect: '+p):a.e==='Strategy Card'?STRATEGY_CARDS.map(c=>'Elect: '+c[0]):a.e==='Scored Secret Objective'?SECRET_OBJECTIVES.map(o=>'Elect: '+o):S.f.map(y=>'Elect: '+F[y][1])}
 function riderUI(i,a,m){const v=S.v[i],x=S.f[i],have=v.riders.map(r=>r.name);
- const opts=Object.keys(RIDERS).filter(r=>(r!=='Galactic Threat'||F[x][0]==='The Nekro Virus')&&!have.includes(r));
+ const opts=Object.keys(RIDERS).filter(r=>(r!=='Galactic Threat'||F[x][0]==='The Nekro Virus')&&(r!=='Keleres Rider'||(kelIn()&&F[x][1]!=='Keleres'))&&!have.includes(r));
  let h='<div class="rider-controls">';
  h+=v.riders.map((r,k)=>{
   const pc=(a.e==='Law'||a.e==='Owned Unit Upgrade')?`<input type="text" placeholder="Predict: ${esc(a.e)}…" value="${esc(r.prediction)}" oninput="setPrediction(${i},${k},this.value)">`:`<select aria-label="Predict an outcome" onchange="setPrediction(${i},${k},this.value)"><option value="">Predict an outcome…</option>${predOpts(a,m).map(o=>`<option value="${esc(o)}" ${r.prediction===o?'selected':''}>${esc(o)}</option>`).join('')}</select>`;
@@ -1020,7 +1081,7 @@ function sm(){const T={},K={};let n=0,tot=0,fa=mode(S.ag)=='fa';
  if(fa){['for','against'].forEach(k=>{K[k]=k=='for'?'For':'Against';T[k]=T[k]||0})}
  const rs=Object.keys(T).sort((a,b)=>fa?(a=='for'?-1:1):T[b]-T[a]),mx=Math.max(0,...rs.map(k=>T[k])),w=rs.filter(k=>T[k]==mx);
  let res='';if(mx>0)res=w.length>1?`<div class="res tie">Tie: ${w.map(k=>esc(K[k])).join(' / ')} (${mx})</div>`:`<div class="res">${n==S.f.length?'Result':'Leading'}: ${esc(K[w[0]])} (${mx})</div>`;
- $('sm').innerHTML=`<h3>Players voted ${n} / ${S.f.length} · ${tot} total votes</h3>`+(rs.length?rs.map(k=>`<div class="br" style="--bc:${k=='for'?'var(--for)':k=='against'?'var(--ag)':'var(--gold)'}"><div><span>${esc(K[k])}</span><b>${T[k]}</b></div><div class="tr"><i style="width:${tot?T[k]/tot*100:0}%"></i></div>${tl(k)}</div>`).join(''):'<div style="color:var(--m)">No votes yet</div>')+res;rbtn();}
+ $('sm').innerHTML=`<h3>Players voted ${n} / ${S.f.length} · ${tot} total votes</h3>`+(rs.length?rs.map(k=>`<div class="br" style="--bc:${k=='for'?'var(--for)':k=='against'?'var(--ag)':'var(--gold)'}"><div><span>${esc(K[k])}${tpv(k)}</span><b>${T[k]}</b></div><div class="tr"><i style="width:${tot?T[k]/tot*100:0}%"></i></div></div>`).join(''):'<div style="color:var(--m)">No votes yet</div>')+res;rbtn();}
 /* ===== EXTENSIONS: timer, top voter, rider text, Resolve Agenda ===== */
 let TI,CX,out,P,ALL,NP,WN,R,KK,fo,ag,ab,tf,ta,tE,tE0,els;
 const fmt=ms=>{const s=Math.max(0,Math.floor(ms/1000));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
@@ -1029,6 +1090,7 @@ const nmv=v=>v.c===null||v.c===undefined?'':String(v.c).trim().toLowerCase();
 function topOf(pred,ex=-1){let best=0,L=[];S.v.forEach((v,i)=>{if(NOV(v,i)||!voted(v)||v.c===ABS||i===ex||!pred(v,i))return;const ev=effV(i);if(ev>best){best=ev;L=[i]}else if(ev==best&&best>0)L.push(i)});return{L,n:best}}
 const fn=i=>esc(fvKey(S.f[i],F[S.f[i]][1]));
 const tl=k=>{const t=topOf(v=>nmv(v)==k);return t.n?`<div class="tvl">Most: ${t.L.map(fn).join(' / ')} (${t.n})</div>`:''};
+const tpv=k=>{const t=topOf(v=>nmv(v)==k);return t.n?` <small class="tvp">(${t.L.map(fn).join(' / ')})</small>`:''};
 const tv=()=>{const t=topOf(()=>true);return `<div class="tvb"><span>Faction with the most votes</span><b>${t.n?t.L.map(fn).join(' / ')+' · '+t.n+' votes':'—'}</b></div>`};
 function rbtn(){const b=$('rb');if(b)b.disabled=!(S.v.every((v,i)=>NOV(v,i)||voted(v))&&S.v.some((v,i)=>!NOV(v,i)))}
 
@@ -1247,7 +1309,7 @@ function backToAction(){if(!S.stat)return;pushUndo();S.stat=false;syncClock();re
 function statusStart(){if(S.scar===true){statusStart2();return}scqOpen()}
 function scqOpen(){soModal('scq',`<div class="mb" style="max-width:28rem"><div class="mh"><h3>Entropic Scar</h3></div><p class="stn" style="margin:.2rem 0 1.2rem;font-size:1.15rem">Is the Entropic Scar in the game?</p><div style="display:flex;gap:.6rem;justify-content:flex-end"><button class="ghost" onclick="scqAns(false)">No</button><button class="go" onclick="scqAns(true)">Yes</button></div></div>`)}
 function scqAns(v){S.scar=v;const m=$('scq');if(m)m.style.display='none';statusStart2()}
-function statusStart2(){S.gp=false;S.gpap=false;S.gpst=false;const a=S.ap;if(a.run){a.acc+=Date.now()-a.t0;a.run=false}if(a.state==='running')a.state='paused';S.stat=true;syncClock();renderAction()}
+function statusStart2(){S.gp=false;S.gpap=false;S.gpst=false;if(S.sc&&S.f.length&&S.f.every((x,i)=>(S.sc[i]||[]).length&&S.sc[i].every(c=>S.cs&&S.cs[c]===2)))S.cs={};const a=S.ap;if(a.run){a.acc+=Date.now()-a.t0;a.run=false}if(a.state==='running')a.state='paused';S.stat=true;syncClock();renderAction()}
 function statusGo(){if(S.simple){apFinish();S.stat=false;S.sco=false;apBegin();syncClock();renderAction();return}
  if(custTaken()){apFinish();S.stat=false;S.step=3;S.view='agenda';go();absStart()}
  else{apFinish();S.stat=false;S.step=3;newStrategy()}}
@@ -1437,7 +1499,7 @@ function stClose(){stFreeze();S.sT.open=false;syncClock();const m=$('stm');if(m)
 function stStart(){if(vdOn()&&S.vd.ph.st==='done')S.vd.ph={st:'idle',kind:'agenda'};S.sh=S.sh||[];const firstSt=S.sh.length===0;{const o=stOrder(S.dord);S.sh.push([(S.sc[o[0]]||[])[0],(S.sc[o[1]]||[])[0]].filter(x=>x!==undefined))}S.dlast=S.dord;S.dord=null;for(let c=0;c<8;c++){const t=S.sc.some(l=>l&&l.includes(c));S.tgt[c]=t?S.tgb[c]:0;S.tgb[c]=t?0:S.tgb[c]+1}stClose();apBegin();pexApply();syncClock();renderAction();if(!firstSt)qdAsk()}
 function stCancel(){stClose();S.step=3;S.view='agenda';go()}
 function stTog(){const t=S.sT;if(t.run)stFreeze();else{t.t0=Date.now();t.run=true}syncClock();openStrat()}
-function pickSC(i,c,el){const L=S.sc[i]=S.sc[i]||[],j=L.indexOf(c);if(j>=0)L.splice(j,1);else{if(S.sc.some((l,q)=>q!==i&&l&&l.includes(c)))return;if(L.length>=SCN(S.f.length))L.shift();L.push(c);if(el&&S.sT.open&&S.tgb[c]>0)coinFx(el,S.tgb[c])}openStrat()}
+function pickSC(i,c,el){const L=S.sc[i]=S.sc[i]||[],j=L.indexOf(c);if(j>=0)L.splice(j,1);else{if(S.sc.some((l,q)=>q!==i&&l&&l.includes(c)))return;if(L.length>=SCN(S.f.length))L.shift();L.push(c);}openStrat()}
 function coinFx(el,n){try{const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,k=Math.min(n,12);
  for(let q=0;q<k;q++){const d=document.createElement('div');d.style.cssText='position:fixed;left:'+(cx-9)+'px;top:'+(cy-9)+'px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3b0,#ffd23f 55%,#c9930a);border:2px solid #a87400;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),0 0 8px rgba(255,210,63,.8);pointer-events:none;z-index:10001';
   document.body.appendChild(d);const dx=(Math.random()-.5)*130,up=70+Math.random()*80,dl=q*70;
@@ -1459,11 +1521,11 @@ function openStrat(){let m=$('stm');if(!m){m=document.createElement('div');m.id=
   return base||(last.includes(c)&&cp.includes(c))};
  const tg=L=>L.reduce((a,c)=>a+(live?S.tgb[c]:S.tgt[c]),0);
  const banner=live?(cur>=0?`<div class="stbn" style="--fc:${pcol(cur)}">▶ ${esc(F[S.f[cur]][0])} – choose strategy card ${(S.sc[cur]||[]).length+1}/${need} <span class="kh">· key 1–8</span></div>`:'<div class="stbn done">All strategy cards chosen – start the Action Phase</div>'):'';
- m.innerHTML=`<div class="mb sw"><div class="mh"><h3>Strategy Phase</h3>${live?`<span class="timer">⏱ <b id="sttm">${fmtH(stMs())}</b></span><button onclick="stTog()">${t.run?'⏸ Pause':'▶ Resume'}</button>`:'<button onclick="closeStrat()">✕ Close</button>'}</div>
- <div class="stsp"><label>Speaker <select onchange="setSpk(this.value)"><option value="">Choose speaker…</option>${S.f.map((x,i)=>`<option value="${i}" ${sp===i?'selected':''}>${i+1}. ${esc(F[x][0])}</option>`).join('')}</select></label><span class="tag">${custom?'Custom order (Nucleum)':sp>=0?'Speaker, then clockwise':'Seat order – choose the speaker'}</span></div>
+ m.innerHTML=`<div class="mb sw stw"><div class="mh"><h3>Strategy Phase</h3>${live?`<span class="timer">⏱ <b id="sttm">${fmtH(stMs())}</b></span><button onclick="stTog()">${t.run?'⏸ Pause':'▶ Resume'}</button>`:'<button onclick="closeStrat()">✕ Close</button>'}</div>
+ <div class="stwrap"><div class="stmain"><div class="stsp"><label>Speaker <select onchange="setSpk(this.value)"><option value="">Choose speaker…</option>${S.f.map((x,i)=>`<option value="${i}" ${sp===i?'selected':''}>${i+1}. ${esc(F[x][0])}</option>`).join('')}</select></label><span class="tag">${custom?'Custom order (Nucleum)':sp>=0?'Speaker, then clockwise':'Seat order – choose the speaker'}</span></div>
  ${banner}
- <div class="stg">${o.map((i,k)=>{const x=S.f[i],L=S.sc[i]||[],g=tg(L);return `<div class="str ${i===cur?'cur':''}" style="--fc:${pcol(i)}"><b>${k+1}. ${esc(F[x][0])}</b><span class="stc">${L.length}/${need}${g?`<br>+${g} TG`:''}</span><div class="stb">${STRATEGY_CARDS.map(([nm,col],c)=>{const mine=L.includes(c);return `<span class="scw"><button class="scb ${mine?'on':''}" style="--sc:${col}" ${tk(c)&&!mine?'disabled':''} onclick="pickSC(${i},${c},this)">${c+1} ${nm}${live&&S.tgb[c]>0?`<em class="tgb">+${S.tgb[c]}<i class="tgi" title="Trade goods"></i></em>`:''}${!live&&mine&&S.tgt[c]>0?`<em class="tgb">+${S.tgt[c]}<i class="tgi" title="Trade goods"></i></em>`:''}${hot(c)?'<span class="flm" title="Chosen first or second in each of the last 2 Strategy Phases">🔥</span>':''}</button></span>`}).join('')}</div></div>`}).join('')}</div>
- <div class="act">${live?`${rdN()>1?'<button onclick="stCancel()">← Back to Agenda</button>':''}<button ${S.sc.some(l=>l&&l.length)?'disabled title="Cannot be played after a strategy card has been chosen"':''} onclick="miOpen()">Manipulate Investments</button><button class="go" ${done?'':'disabled'} onclick="stStart()">Start Action Phase</button>`:''}</div></div>`;
+ <div class="stg">${o.map((i,k)=>{const x=S.f[i],L=S.sc[i]||[],g=tg(L);return `<div class="str ${i===cur?'cur':''}" style="--fc:${pcol(i)}"><b>${k+1}. ${esc(F[x][0])}</b><span class="stc">${L.length}/${need}</span><div class="stb">${STRATEGY_CARDS.map(([nm,col],c)=>{const mine=L.includes(c);return `<span class="scw"><button class="scb ${mine?'on':''}" style="--sc:${col}" ${tk(c)&&!mine?'disabled':''} onclick="pickSC(${i},${c},this)">${c+1} ${nm}</button></span>`}).join('')}</div></div>`}).join('')}</div></div><aside class="stobj">${stObj()}</aside></div>
+ <div class="act">${live?`${rdN()>1?'<button onclick="stCancel()">← Back to Agenda</button>':''}<button class="go" ${done?'':'disabled'} onclick="stStart()">Start Action Phase</button>`:''}</div></div>`;
  m.style.display='flex'}
 /* ===== MANIPULATE INVESTMENTS ===== */
 var MI=[0,0,0,0,0,0,0,0];
@@ -2051,7 +2113,7 @@ const lawOwner=l=>l.own>=0&&S.f[l.own]>=0?F[S.f[l.own]][1]:'';
 function lawText(d,l){const hl=l.o==='For'?'For:':l.o==='Against'?'Against:':null;return d.x.split(/\n\n/).map(p=>{const on=hl&&p.startsWith(hl);return `<p class="lwp ${on?'on':''}">${esc(p)}${on?' <em>← active outcome</em>':''}</p>`}).join('')}
 function lawsDraw(){const m=$('lwm');if(!m)return;const L=S.laws||[];
  const cards=L.map(l=>{const d=D.find(x=>x.n===l.n);if(!d)return '';const own=lawOwner(l),elf=l.el?(F.find(f=>f[0]===l.el)||[0,l.el])[1]:'';
-  return `<div class="lwc"><div class="lwh"><b>${esc(l.n)}</b><span class="tag" style="--tc:${TC.Law}">Law</span><span class="lwa">● Active</span></div><div class="lwm">Outcome: <b>${l.o==='Elected'?'Elected':esc(l.o)}</b>${elf?` · Elected: <b>${esc(elf)}</b>`:''}${own?` · Owner / affected player: <b style="color:${pcol(l.own)}">${esc(own)}</b>`:''}</div><div class="lwt">${lawText(d,l)}</div>${lawTokHtml(l)}${LW.pend===l.id?`<div class="lwr">Remove this law from the active list? <button onclick="LW.pend=null;lawsDraw()">Cancel</button><button class="go" onclick="lawRepeal(${l.id})">Repeal Law</button></div>`:`<div class="lwr"><button onclick="LW.pend=${l.id};lawsDraw()">Repeal / discard this law</button></div>`}</div>`}).join('');
+  return `<div class="lwc"><div class="lwh"><b>${esc(l.n)}</b><span class="tag" style="--tc:${TC.Law}">Law</span><span class="lwa">● Active</span><button type="button" class="lwx" title="Remove this law from play" onclick="lawRm(${l.id})">✕</button></div><div class="lwm">Outcome: <b>${l.o==='Elected'?'Elected':esc(l.o)}</b>${elf?` · Elected: <b>${esc(elf)}</b>`:''}${own?` · Owner / affected player: <b style="color:${pcol(l.own)}">${esc(own)}</b>`:''}</div><div class="lwt">${lawText(d,l)}</div>${lawTokHtml(l)}${LW.pend===l.id?`<div class="lwr">Remove this law from the active list? <button onclick="LW.pend=null;lawsDraw()">Cancel</button><button class="go" onclick="lawRepeal(${l.id})">Repeal Law</button></div>`:`<div class="lwr"><button onclick="LW.pend=${l.id};lawsDraw()">Repeal / discard this law</button></div>`}</div>`}).join('');
  let add='';
  if(LW.add){const cand=D.filter(d=>d.t==='Law'&&!L.some(l=>l.n===d.n)),a=D.find(d=>d.n===LW.sel);
   add=`<div class="lwadd"><select onchange="LW.sel=this.value;LW.o='For';LW.el='';LW.own='';lawsDraw()"><option value="">Choose law…</option>${cand.map(d=>`<option ${LW.sel===d.n?'selected':''}>${esc(d.n)}</option>`).join('')}</select>${a&&a.e==='Player'?`<select onchange="LW.own=this.value"><option value="">Elected player…</option>${S.f.map((x,i)=>`<option value="${i}" ${LW.own===String(i)?'selected':''}>${esc(fvKey(x,F[x][1]))}</option>`).join('')}</select>`:''}${a&&a.e&&a.e!=='Player'?`<input type="text" placeholder="Elected ${esc(a.e)}…" value="${esc(LW.el)}" oninput="LW.el=this.value">`:''}${a&&!a.e&&a.n==='Affirmation of Divine Right'?`<select onchange="LW.o=this.value"><option ${LW.o==='For'?'selected':''}>For</option><option ${LW.o==='Against'?'selected':''}>Against</option></select>`:''}<button class="go" onclick="lawAdd()">Add Law</button><button onclick="LW.add=false;lawsDraw()">Cancel</button></div>`}
@@ -2160,7 +2222,7 @@ function elimDo(){const e=ELM.e;if(e==null||!elOk()||e<0||e>=S.f.length)return;
  ELM.e=null;ELM.step='pick';
  if(S.view==='agenda'&&S.step===4&&S.ag&&mode(S.ag)!=='res'&&$('vb')){
   /* keep the agenda timer running: only rebuild the voting panel */
-  S.v=S.f.map(()=>({votes:0,c:null,riders:[]}));S.rs=null;chrome();updDots();rv();updateRiderInfo();renderFV()}
+  S.ps={};S.v=S.f.map(()=>({votes:0,c:null,riders:[]}));S.rs=null;chrome();updDots();rv();updateRiderInfo();renderFV()}
  else go();
  if(S.view==='action'&&S.sT&&S.sT.open)openStrat();
  toastMsg(short+' eliminated – game continues with '+S.f.length+' players','#ff7b6b')}
@@ -2191,7 +2253,7 @@ const isAR=i=>S.f[i]>=0&&F[S.f[i]][0]==='The Argent Flight';
 const hasPI=i=>S.f[i]>=0&&((S.tech&&S.tech[i])||[]).includes('Predictive Intelligence');
 function piBonus(i){const v=S.v[i];return v&&v.pi&&!(S.piUsed&&S.piUsed[i])?3:0}
 function arBonus(i){const v=S.v[i];if(!v||!isAR(i)||NOV(v,i)||!voted(v)||v.c===ABS)return 0;return (v.votes+piBonus(i))>=1?S.f.length:0}
-function effV(i){const v=S.v[i];if(!v)return 0;if(NOV(v,i)||!voted(v)||v.c===ABS)return v.votes;return v.votes+piBonus(i)+arBonus(i)}
+function effV(i){const v=S.v[i];if(!v)return 0;if(NOV(v,i)||!voted(v)||v.c===ABS)return v.votes;return Math.max(0,v.votes+piBonus(i)+arBonus(i)-psPen(i))}
 
 /* ===== DISCORDANT STARS: agenda-phase reminders in the voting faction box ===== */
 const DS_AG={
@@ -2214,8 +2276,8 @@ function piBtn(i,nov){if(!hasPI(i))return '';if(S.piUsed&&S.piUsed[i])return '<d
  return `<button class="pib ${S.v[i].pi?'on':''}" ${nov?'disabled':''} onclick="togPI(${i})">Predictive Intelligence<small>+3 votes</small></button>`}
 function togPI(i){S.v[i].pi=!S.v[i].pi;rv()}
 function updBk(i){const e=$('bk'+i);if(!e)return;const v=S.v[i];if(!v||NOV(v,i)||!voted(v)||v.c===ABS){e.innerHTML='';return}
- const pi=piBonus(i),ar=arBonus(i),warn=S.pv&&S.pv[i]!=null&&v.votes>S.pv[i];
- e.innerHTML=(pi||ar?`${v.votes} planet/other${pi?` <b class="pibx">+ 3 Predictive Intelligence</b>`:''}${ar?` <b class="arbx">+ ${ar} Argent Flight</b>`:''} = <b>${effV(i)} votes</b>`:'')+(warn?`<div class="vwarn">More than the ${S.pv[i]} planet votes available</div>`:'')}
+ const pi=piBonus(i),ar=arBonus(i),pn=psPen(i),warn=S.pv&&S.pv[i]!=null&&v.votes>S.pv[i];
+ e.innerHTML=(pi||ar||pn?`${v.votes} planet/other${pi?` <b class="pibx">+ 3 Predictive Intelligence</b>`:''}${ar?` <b class="arbx">+ ${ar} Argent Flight</b>`:''}${pn?` <b class="psbx">− ${pn} Political Secret</b>`:''} = <b>${effV(i)} votes</b>`:'')+(warn?`<div class="vwarn">More than the ${S.pv[i]} planet votes available</div>`:'')}
 function agTally(){const es=S.ag&&mode(S.ag)==='res';
  if(!es&&Array.isArray(S.v)){if(S.pv)S.v.forEach((v,i)=>{if(S.pv[i]==null||NOV(v,i)||!voted(v)||v.c===ABS)return;S.pv[i]=Math.max(0,S.pv[i]-v.votes)});
   S.piUsed=S.piUsed||{};S.v.forEach((v,i)=>{if(v.pi&&voted(v)&&v.c!==ABS&&!NOV(v,i))S.piUsed[i]=true})}
@@ -2669,7 +2731,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')taClose()});
 const LAW_S_ABS={"Affirmation of Divine Right": "Mecatol Rex is legendary; others give its controller a promissory note each strategy phase.", "Anti-Intellectual Revolution": "Players return their top-prerequisite technology; all prerequisites are doubled.", "Articles of War": "Mechs lose their abilities except Sustain Damage.", "Checks and Balances": "Chosen strategy cards must be passed to another player.", "Classified Document Leak": "An elected secret objective became public.", "Committee Formation": "Owner may choose the elected player instead of a vote.", "Conventions of War": "No Bombardment against cultural planets.", "Economic Equality": "Trade goods reset; every commodity value is 3.", "Enforced Travel Ban": "Alpha and beta wormholes have no effect on movement.", "Executive Sanctions": "Action card hand limit 3 (5 for token holders).", "Fleet Regulations": "Fleet pool limit 4 command tokens (5 for token holders).", "Homeland Defense Act": "May place one extra PDS when placing PDS on a planet.", "Hyperlane Development Program": "Empty non-anomaly systems cost no movement; ships may pass through other players’ ships there.", "Imperial Arbiter": "Owner may swap a strategy card at the end of the strategy phase.", "Judicial Abolishment": "Speaker may spend 6 influence to discard a law.", "Minister of Antiquities": "Imperial secondary is free; may draw a relic instead of scoring.", "Minister of Commerce": "Trade secondary is free; +1 trade good per neighbor when replenishing.", "Minister of Exploration": "Extra Leadership secondary token; may explore after a tactical action.", "Minister of Industry": "Construction secondary is free; space dock PRODUCTION +4.", "Minister of Peace": "Diplomacy secondary is free; may end another player’s turn after activation.", "Minister of Policy": "Politics secondary is free; controls action card draw in the Status Phase.", "Minister of Sciences": "Technology secondary is free; researches without spending resources.", "Minister of War": "Warfare secondary is free; may remove a command token from the board.", "Nexus Sovereignty": "Wormhole Nexus wormholes have no effect on movement.", "Pax Magnifica, Bellum Gloriosum": "Own-colour Ceasefire notes were given away and cannot be received back.", "Political Censure": "Owner has +1 VP, cannot play action cards or take the speaker token.", "Preservation of Historical Sites": "Exploring costs influence (1 industrial, 2 cultural).", "Prophecy of Ixth": "Owner’s fighters get +1 to combat; hits must go to non-fighters.", "Publicize Weapon Schematics": "Prerequisites ignored for the elected unit upgrade type; it loses Sustain Damage.", "Regulated Conscription": "Producing units gives only 1 fighter or infantry per cost.", "Representative Government": "Votes equal planets exhausted; no extra votes.", "Search Warrant": "Owner plays with secret objectives revealed.", "Shared Research": "Anomalies without frontier tokens do not affect movement.", "Term Limits": "Control token holders cannot take the speaker token.", "Wormhole Reconstruction": "Alpha and beta wormholes count as each other."};
 const LAW_S_ORIG={"Anti-Intellectual Revolution": "After researching a technology, destroy one non-fighter ship.", "Articles of War": "Mechs lose their abilities except Sustain Damage.", "Checks and Balances": "Players give their chosen strategy card to another player.", "Classified Document Leaks": "An elected secret objective became public.", "Committee Formation": "Owner may choose the elected player instead of voting.", "Conventions of War": "Bombardment cannot target units on cultural planets.", "Enforced Travel Ban": "Alpha and beta wormholes have no effect on movement.", "Executive Sanctions": "Action card hand limit is 3.", "Fleet Regulations": "Fleet pool limit is 4 command tokens.", "Homeland Defense Act": "Any number of PDS allowed on planets.", "Imperial Arbiter": "Owner may swap a strategy card at the end of the Strategy Phase.", "Minister of Commerce": "+1 trade good per neighbor when replenishing commodities.", "Minister of Exploration": "+1 trade good whenever gaining control of a planet.", "Minister of Industry": "May use production abilities when placing a space dock.", "Minister of Peace": "May end another player’s turn after they activate a system.", "Minister of Policy": "Draws 1 action card at the end of each Status Phase.", "Minister of Sciences": "No resources spent when researching via the Technology card.", "Minister of War": "May discard to take another action after an action.", "Nexus Sovereignty": "Wormhole Nexus wormholes have no effect on movement.", "Political Censure": "Owner has +1 VP but cannot play action cards.", "Prophecy of Ixth": "Fighters +1 to combat; discarded unless 2+ fighters produced.", "Publicize Weapon Schematics": "War Sun prerequisites ignored; War Suns lose Sustain Damage.", "Regulated Conscription": "1 fighter and 1 infantry for the cost of two.", "Representative Government": "Planets cannot be exhausted for votes; 1 vote each.", "Search Warrant": "Owner drew 2 secret objectives, kept revealed.", "Shared Research": "Units may move through nebulae.", "Wormhole Reconstruction": "Systems with alpha or beta wormholes are adjacent."};
 function lawShort(l){const m=S.dk==='orig'?Object.assign({},LAW_S_ABS,LAW_S_ORIG):LAW_S_ABS;return m[l.n]||''}
-function lawRowHtml(l){const o=l.own>=0&&S.f[l.own]>=0?flgP(l.own,''):'';const d=lawShort(l);return '<div class="lwrow2"><div class="lwt1"><span>'+esc(l.n)+'</span>'+o+'</div>'+(d?'<div class="lwd">'+esc(d)+'</div>':'')+'</div>'}
+function lawRowHtml(l){const o=l.own>=0&&S.f[l.own]>=0?flgP(l.own,''):'';const d=lawShort(l);return '<div class="lwrow2"><div class="lwt1"><span>'+esc(l.n)+'</span>'+o+'<button type="button" class="lwx" title="Remove this law from play" onclick="lawRm('+l.id+')">✕</button></div>'+(d?'<div class="lwd">'+esc(d)+'</div>':'')+'</div>'}
 
 /* ===== Laws in play card grows (spans extra rows) only when its content needs more room ===== */
 function lawFit(){try{const c=document.querySelector('.og .oc.ocL');if(!c)return;const inner=c.querySelector('.lwin2');if(!inner)return;
@@ -2678,5 +2740,48 @@ window.addEventListener('resize',()=>requestAnimationFrame(lawFit));
 
 /* ===== mobile helpers ===== */
 function ttNextTouch(){const d=document.getElementById('dots');if(!d||document.getElementById('ttnx'))return;if(!(S&&S.trk&&S.view==='action'))return;const b=document.createElement('button');b.id='ttnx';b.type='button';b.className='ghost ttnx';b.textContent='Next turn';b.onclick=()=>ttNext();d.appendChild(b)}
+
+/* ===== NEW: Keleres Rider, Political Secret, Covert Legislation outcomes, law removal, strategy objectives ===== */
+const kelIn=()=>S&&S.f.some(y=>y>=0&&F[y][1]==='Keleres');
+RIDERS['Keleres Rider']='After an agenda is revealed: You cannot vote on this agenda. Predict aloud an outcome of this agenda. If your prediction is correct, draw 1 action card and gain 2 trade goods. Then, return this card to the Keleres player.';
+RT['Keleres Rider']='Draw 1 action card and gain 2 TG.';
+
+/* law removal (✕) */
+function lawRm(id){const l=(S.laws||[]).find(x=>x.id===id);if(!l)return;pushUndo();S.laws=S.laws.filter(x=>x.id!==id);try{lawVPSync()}catch(e){}logAction('Law removed from play','“'+l.n+'”');
+ const w=$('lwm');if(w&&w.style.display!=='none'&&w.style.display!=='')lawsDraw();
+ if(S.view==='action')renderAction();else{const b=document.querySelector('.lwo');if(b)b.outerHTML=lawBox()}}
+
+/* Political Secret: reduces the votes of the chosen faction */
+var PSW={t:0,n:1};
+const psPen=i=>(S.ps&&S.ps[i])||0;
+function psBtn(i){const p=psPen(i);return `<button type="button" class="psb${p?' on':''}" onclick="psOpen(${i})">Political Secret${p?` <b>− ${p}</b>`:''}</button>`}
+function psOpen(i){PSW={t:i,n:1};psDraw()}
+function psClose(){const m=$('psm');if(m)m.style.display='none'}
+function psStep(d){PSW.n=Math.max(1,Math.min(99,(parseInt(PSW.n)||1)+d));psDraw()}
+function psDraw(){let m=$('psm');if(!m){m=document.createElement('div');m.id='psm';m.className='mo';m.onclick=e=>{if(e.target===m)psClose()};document.body.appendChild(m)}
+ const act=S.f.map((x,i)=>psPen(i)?`<span class="psl" style="--fc:${pcol(i)}">${esc(fvKey(x,F[x][1]))} − ${psPen(i)}<button type="button" title="Remove" onclick="psClear(${i})">✕</button></span>`:'').join('');
+ m.innerHTML=`<div class="mb psw"><div class="mh"><h3>Political Secret</h3><button onclick="psClose()">✕ Close</button></div>
+ <p class="stn">Choose the faction and how many votes it loses.</p>
+ <div class="pschips">${S.f.map((x,i)=>`<button type="button" class="chip ${PSW.t===i?'on':''}" style="--fc:${pcol(i)}" onclick="PSW.t=${i};psDraw()">${flgX(x,'fl-sm')}${esc(fvKey(x,F[x][1]))}</button>`).join('')}</div>
+ <div class="psrow"><button type="button" onclick="psStep(-1)">−</button><input id="psn" type="number" min="1" max="99" value="${PSW.n}" oninput="PSW.n=parseInt(this.value)||1"><button type="button" onclick="psStep(1)">+</button><span class="psv">votes</span></div>
+ ${act?`<div class="psact"><span>Active:</span>${act}</div>`:''}
+ <div class="act"><button onclick="psClose()">Cancel</button><button class="go" onclick="psApply()">Reduce votes</button></div></div>`;
+ m.style.display='flex'}
+function psApply(){const t=PSW.t,n=Math.max(1,parseInt(PSW.n)||1);if(!(S.f[t]>=0))return;S.ps=S.ps||{};S.ps[t]=(S.ps[t]||0)+n;logAction('Political Secret','−'+n+' votes for '+fvKey(S.f[t],F[S.f[t]][1]));psClose();rv()}
+function psClear(i){if(S.ps)delete S.ps[i];rv();psDraw()}
+
+/* Covert Legislation: choose which kind of outcome the (hidden) agenda has */
+const COV_NAME=e=>e==='fa'?'For / Against':e==='Player'?'Elect Player':'Elect '+e;
+function covOpts(){const set=[];(typeof D!=='undefined'?D:[]).forEach(d=>{if(d.e&&!set.includes(d.e))set.push(d.e)});set.sort((a,b)=>(a==='Player'?-1:b==='Player'?1:a.localeCompare(b)));return ['fa'].concat(set)}
+function covBox(a){if(!a||a.n!=='Covert Legislation')return `<div class="txt">${esc(a.x)}</div>`;const cur=a.cov||'fa';
+ return `<div class="covrow" id="covbox"><div class="covopts"><div class="covl">Outcome</div>${covOpts().map(o=>`<button type="button" class="covb ${cur===o?'on':''}" data-o="${esc(o)}" onclick="covSet(this.dataset.o)">${esc(COV_NAME(o))}</button>`).join('')}</div><div class="txt">${esc(a.x)}</div></div>`}
+function covSet(e){if(!S.ag||S.ag.n!=='Covert Legislation')return;const base=S.ag.__b||S.ag;S.ag=Object.assign({},base,{__b:base,e:e==='fa'?null:e,cov:e});
+ if(Array.isArray(S.v))S.v.forEach(v=>{v.c=null;(v.riders||[]).forEach(r=>r.prediction='')});
+ const b=$('covbox');if(b)b.outerHTML=covBox(S.ag);const t=$('etag');if(t){t.hidden=!S.ag.e;t.textContent='Elect: '+(S.ag.e||'')}
+ rv();updateRiderInfo()}
+
+/* Strategy window: current public objectives */
+function stObj(){const O=(S.obj||[]).filter(o=>poG(o.k));
+ return '<div class="stoh">Public objectives</div>'+(O.length?O.map(o=>{const q=poG(o.k);return `<div class="sto s${q[1]}"><div class="stot"><span>${esc(q[3]||('Stage '+(q[1]==1?'I':'II')))}</span><b>${q[1]} VP</b></div><div class="ston">${esc(q[0])}</div><div class="stox">${esc(q[2]||'')}</div>${o.s&&o.s.length?`<div class="stof">${o.s.map(i=>S.f[i]>=0?flgP(i,'fl-sm'):'').join('')}</div>`:''}</div>`}).join(''):'<div class="stox">No public objectives yet.</div>')}
 </script>
 </body></html>
