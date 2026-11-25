@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TIT 1.36</title>
+<title>TIT 1.43</title>
 
 <style>
 :root{--fb:"Segoe UI",system-ui,Roboto,sans-serif;--fs:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--ink:#0a0818;--p:#161330;--p2:#211d44;--bd:#3a3566;--bd2:#2c2850;--g1:#6a3fc055;--g2:#1b8fa04a;--dim:.7;--t:#f1ecdf;--m:#9d98bd;--gold:#e9c46a;--for:#4fd8c4;--ag:#ff7b6b;--ab:#8f8bb0}
@@ -1369,11 +1369,11 @@ function secStrip(){
   const lk=secLocked(i);
   if(lk){const n=lk.note||'Secret objective';return `<label class="sech done" style="--fc:${pcol(i)}"><span>${esc(fvShort(i))}${sc?` · ${sc}`:''}</span><select disabled title="Already scored a secret objective this status phase"><option>✓ ${esc(n)}</option></select></label>`}
   return `<label class="sech" style="--fc:${pcol(i)}"><span>${esc(fvShort(i))}${sc?` · ${sc}`:''}</span><select onchange="secScore(${i},this.value)"><option value="">Score…</option>${left.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join('')}</select></label>`}).join('')}</div>`}
-function secLocked(i){const id=S.ssec&&S.ssec[i];if(id==null)return null;return S.mp.find(m=>m.id===id&&m.pts>0&&m.r==='Secret Objective')||null}
+function secLocked(i){if(!S.stat)return null;const id=S.ssec&&S.ssec[i];if(id==null)return null;return S.mp.find(m=>m.id===id&&m.pts>0&&m.r==='Secret Objective')||null}
 function secScore(i,n){
  if(!n||!SECRET_OBJECTIVES.includes(n)||!(S.f[i]>=0)){renderAction();return}
  if(soScored().by[n]||secLocked(i)){renderAction();return}
- pushUndo();S.mp.push({id:++S.mid,p:i,pts:1,r:'Secret Objective',note:n});(S.ssec=S.ssec||{})[i]=S.mid;
+ pushUndo();S.mp.push({id:++S.mid,p:i,pts:1,r:'Secret Objective',note:n});if(S.stat)(S.ssec=S.ssec||{})[i]=S.mid;
  snap(i,1,'Secret Objective – '+n);
  logAction('Secret objective “'+n+'” scored by '+logPlayer(i));
  try{if($('vpm'))vpLog()}catch(e){}
@@ -1485,7 +1485,7 @@ function renderAction(){try{updDots()}catch(e){}
   :st==='paused'?`<button class="go" onclick="${S.gp?'gpToggle()':'apStart()'}">▶ Resume</button>`
   :`<button class="go" onclick="apStart()">▶ ${S.simple?(st==='ended'?'Next Round':'Start'):(st==='ended'?'Start New Action Phase':'Start Action Phase')}</button>`;
  $('brand').textContent=S.simple?'':(S.stat?'STATUS PHASE':'ACTION PHASE');
- let h=`<div class="tvh"><div class="tvt tvtw"><div><small>Round time</small><b id="aptm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(apMs()))}</b>${S.gp||(!S.stat&&st==='running')?'':`<span class="tst ${S.stat?'ended':st}">${stl}</span>`}</div><div class="rdbar" id="rdBar" onclick="rdEdit()" title="Round – click to change">${rdBarHtml()}</div><div class="tvhs">${holdSel()}${eoReady()&&!S.simple?'<button class="eo" title="Agenda vote while the Action Phase clock keeps running" onclick="execOrder()">Executive Order – Agenda</button>':''}</div></div><div class="tvg"><div class="tvc">${toolsHtml()}${S.stat?'':`${S.sco?lwToggle():''}<button class="stsb ${S.sco?'on':''}" onclick="S.sco=!S.sco;renderAction()">${S.sco?'Done Scoring':'Score Points'}</button>`}${S.stat?'<button class="stsb" onclick="backToAction()">← Back to Action Phase</button>':''}<button class="stsb ${S.stat?'on':''}" onclick="${S.stat?'statusNext()':'statusStart()'}">${S.stat?(S.simple?'Next Round':(custTaken()?'Start Agenda Phase':'Start Strategy Phase')):'Start Status Phase'}</button>${ctl}</div><div class="tvgt"><small>Total Time</small><b id="gtm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(gtNow()))}</b></div></div></div>`;
+ let h=`<div class="tvh"><div class="tvt tvtw"><div><small>Round time</small><b id="aptm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(apMs()))}</b>${S.gp||(!S.stat&&st==='running')?'':`<span class="tst ${S.stat?'ended':st}">${stl}</span>`}</div><div class="rdbar" id="rdBar" onclick="rdEdit()" title="Round – click to change">${rdBarHtml()}</div><div class="tvhs">${holdSel()}${eoReady()&&!S.simple?'<button class="eo" title="Agenda vote while the Action Phase clock keeps running" onclick="execOrder()">Executive Order – Agenda</button>':''}</div></div><div class="tvg"><div class="tvc">${toolsHtml()}${S.stat?'':`${S.sco?lwToggle()+(S.simple?'':spkToggle()):''}<button class="stsb ${S.sco?'on':''}" onclick="S.sco=!S.sco;renderAction()">${S.sco?'Done Scoring':'Score Points'}</button>`}${S.stat?'<button class="stsb" onclick="backToAction()">← Back to Action Phase</button>':''}<button class="stsb ${S.stat?'on':''}" onclick="${S.stat?'statusNext()':'statusStart()'}">${S.stat?(S.simple?'Next Round':(custTaken()?'Start Agenda Phase':'Start Strategy Phase')):'Start Status Phase'}</button>${ctl}</div><div class="tvgt"><small>Total Time</small><b id="gtm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(gtNow()))}</b></div></div></div>`;
  h+=vdBar();
  h+=`<div class="tvm"><div class="sbcol"><aside class="sbd"><div class="sbl">`
   +rk.map(e=>{const lead=e.rk===1&&e.t>0,u=vpNum(e.i,e.t),ps=((S.sc&&S.sc[e.i])||[]).some(c=>(S.cs||{})[c]===2);return `<div class="sbr ${lead?'lead':''}${ps?' pas':''}" style="--fc:${pcol(e.i)}"><span class="rk">${e.rk}</span><div class="sbn"><b>${fvT(e.i)}</b>${(()=>{const n=nmGet(e.i);return n?`<span class="scl"><i class="pnm">${esc(n)}</i></span>`:''})()}<small><img class="vpi" src="${VPI.po}" alt="PO" title="Public objectives"> ${e.po} · <img class="vpi" src="${VPI.so}" alt="SO" title="Secret objectives"> ${S.mp.filter(m=>m.p===e.i&&m.r==='Secret Objective'&&m.pts>0).length} · Quacs ${e.ex}${e.i===spIdx()?` <img class="vpsp" src="${VPI.sp}" alt="Speaker" title="Speaker" draggable="false">`:''}</small></div><span class="sbv">${scThumbs(e.i)}<em${u?` class="${u.d>0?'nup':'ndn'}" style="--ad:-${u.el}ms"`:''}>${e.t}</em></span>${(S.stat||S.sco)?`<button class="sbp" title="Add VP" onclick="openVP(${e.i})">＋</button>`:''}</div>`}).join('')
@@ -1493,7 +1493,7 @@ function renderAction(){try{updDots()}catch(e){}
  h+=([...S.obj.filter(o=>!o.lk),...S.obj.filter(o=>o.lk)].map(o=>ocCard(o,n)).join('')
   ||(S.obj.length?'':`<div class="empty">No public objectives yet${S.stat||S.sco?' – add them from the list at the bottom.':' – press Score Points to add them.'}</div>`))+lawCard();
   h+='</div></section></div>';
- if(S.stat)h+=secStrip()+statusBox();
+ if(S.stat)h+=secStrip()+statusBox();else if(S.sco)h+=secStrip();
  h+=S.sco&&!S.stat?vpPanel():`<div class="tpanel tpclk${S.techEdit?' ed':''}"${S.techEdit?'':' title="Click to edit techs"'} onclick="techPanelClick(event)"><div class="tcs one${S.f.length>=5?' dense':''}" style="--n:${S.f.length}">${S.f.map((x,i)=>{const L=techSorted(i);return `<div class="tc" style="--fc:${pcol(i)}"><div class="tch"><b>${esc(fvName(i))}</b><span class="tui">${techIcons(i,L)}</span></div><div class="tcl">${techCols(i,L.filter(t=>!uuKey(t)))}</div>${S.techEdit?`<select onchange="addTech(${i},this.value)">${techOpts(i)}</select>`:''}</div>`}).join('')}</div>${S.techEdit?'<div class="tph" style="justify-content:flex-end;margin:.7rem 0 0"><button class="go" onclick="event.stopPropagation();S.techEdit=false;renderAction()">✓ Done</button></div>':''}</div>`;
  h+=ttPanel();const pool=g=>{const L=PO.map((q,k)=>[q,k]).filter(([q,k])=>q[1]===g&&!S.obj.some(o=>o.k===k));return L.length?L.map(([q,k])=>`<button class="pob" title="${esc(q[2])}" onclick="addObj(${k})">${esc(q[0])}</button>`).join(''):'<span style="color:var(--m)">All added</span>'};
  const secPool=()=>{const L=SECRET_OBJECTIVES.map((n,i)=>[n,i]).filter(([n])=>{const j=(S.xo||[]).findIndex(x=>x.n===n);return !(j>=0&&S.obj.some(o=>o.k===1000+j))});return L.length?L.map(([n,i])=>`<button class="pob" title="${esc((typeof SO_INFO!=='undefined'&&SO_INFO[n]&&SO_INFO[n][1])||'')}" onclick="addSec(${i})">${esc(n)}</button>`).join(''):'<span style="color:var(--m)">All added</span>'};
@@ -2828,4 +2828,23 @@ function covSet(e){if(!S.ag||S.ag.n!=='Covert Legislation')return;const base=S.a
 function stObj(){const O=(S.obj||[]).filter(o=>poG(o.k));
  return '<div class="stoh">Public objectives</div>'+(O.length?O.map(o=>{const q=poG(o.k);return `<div class="sto s${q[1]}"><div class="stot"><span>${esc(q[3]||('Stage '+(q[1]==1?'I':'II')))}</span><b>${q[1]} VP</b></div><div class="ston">${esc(q[0])}</div><div class="stox">${esc(q[2]||'')}</div>${o.s&&o.s.length?`<div class="stof">${o.s.map(i=>S.f[i]>=0?flgP(i,'fl-sm'):'').join('')}</div>`:''}</div>`}).join(''):'<div class="stox">No public objectives yet.</div>')}
 </script>
+<style>
+/* ---- Speaker selector under Score Points (like Laws in play) ---- */
+.tvc .spkb{margin:0;padding:.3rem .8rem;gap:.6rem;cursor:default}
+.tvc .spkb .trkt b{font-size:1.05rem}
+.tvc .spkb select{font-size:1rem;padding:.2rem .4rem;min-width:7rem;max-width:12rem;width:auto}
+</style>
+<script>
+function spkToggle(){const sp=spIdx();return '<label class="trk rtb lwb spkb" title="Choose the Speaker"><span class="trkt"><b>Speaker</b></span><select onchange="setSpkAct(this.value)"><option value="">Choose…</option>'+S.f.map((x,i)=>x>=0?`<option value="${i}" ${sp===i?'selected':''}>${i+1}. ${esc(F[x][0])}</option>`:'').join('')+'</select></label>'}
+function setSpkAct(v){if(v===''||v==null)return;if(String(S.sp)===String(v))return;const rd0=rdN();pushUndo();S.sp=String(v);updDots();renderAction();logAction('Speaker selected','Speaker set to '+logPlayer(v)+'.',rd0)}
+</script>
+<style>
+/* ---- strategy card popup (shown when a card is marked played, auto-hides) ---- */
+#scimg img{height:calc(50vh / var(--zm,1))}
+</style>
+<style>
+/* ---- VP track: PO / SO / Quacs row same size as the faction name ---- */
+.sbn small{font-size:1.08rem!important}
+@media(max-width:1500px){.sbn small{font-size:.98rem!important}}
+</style>
 </body></html>
