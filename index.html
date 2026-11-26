@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TIT 1.47</title>
+<title>TIT 1.58</title>
 
 <style>
 :root{--fb:"Segoe UI",system-ui,Roboto,sans-serif;--fs:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--ink:#0a0818;--p:#161330;--p2:#211d44;--bd:#3a3566;--bd2:#2c2850;--g1:#6a3fc055;--g2:#1b8fa04a;--dim:.7;--t:#f1ecdf;--m:#9d98bd;--gold:#e9c46a;--for:#4fd8c4;--ag:#ff7b6b;--ab:#8f8bb0}
@@ -1028,13 +1028,14 @@ function setXA(i,c){S.xa=S.xa.map(()=>false);if(c)S.xa[i]=true;rv();updateRiderI
 const NOV=(v,i)=>v.riders.length>0&&(!XX(i)||v.riders.some(r=>r.name==='Sanctions'));
 const COLORS=[['Red','#e63946'],['Blue','#2e7bff'],['Green','#2ecc71'],['Yellow','#ffd23f'],['Purple','#9b59ff'],['Orange','#ff8a1f'],['Pink','#ff6fb5'],['Black','#3a3a3a']];
 const pcol=i=>(S.pc&&S.pc[i])||(S.f[i]>=0?F[S.f[i]][2]:'var(--bd)');
+function glowCol(c){const m=/^#?([0-9a-f]{6})$/i.exec(String(c||'').trim());if(!m)return c;const n=parseInt(m[1],16),L=(.2126*(n>>16&255)+.7152*(n>>8&255)+.0722*(n&255))/255;return L<.32?'#dfe8ff':c}
 function voteOrder(){const n=S.f.length;let o=S.f.map((x,i)=>i).filter(i=>S.f[i]>=0);const k=spIdx();
  if(k>=0){o=[];for(let j=1;j<=n;j++){const i=S.hack?((k-j)%n+n)%n:(k+j)%n;if(S.f[i]>=0)o.push(i)}}
  const ar=o.find(i=>F[S.f[i]][0]==='The Argent Flight');if(ar!==undefined)o=[ar,...o.filter(i=>i!==ar)];
  const ed=o.find(i=>F[S.f[i]][0]==='The Edyn Mandate'&&((S.tech&&S.tech[i])||[]).includes('Encrypted Trade Hub'));if(ed!==undefined)o=[...o.filter(i=>i!==ed),ed];return o}
 function turnOrder(){
  const o=S.f.map((x,i)=>i).filter(i=>S.f[i]>=0&&((S.sc&&S.sc[i])||[]).length).sort((a,b)=>scMin(a)-scMin(b)||a-b);if(!o.length)return'';
- return '<div class="dr to"><span class="dl">Turn order</span>'+o.map(i=>{const L=S.sc[i],cs=S.cs||{},done=L.every(c=>cs[c]===2);const imgs=typeof SC_IMG==='undefined'?'':L.slice().sort((a,b)=>a-b).filter(c=>SC_IMG[c]).map(c=>{const nm=STRATEGY_CARDS[c]?STRATEGY_CARDS[c][0]:'';return `<img class="tcimg${cs[c]?' pd':''}" src="${(typeof SC_SM!=='undefined'&&SC_SM[c])||SC_IMG[c]}" alt="${esc(nm)}" title="${esc(nm)}${cs[c]?' (played)':''}" draggable="false" onclick="scShow(${c})">`}).join('');return `<span class="toc${done?' dn':''}${S.trk&&S.ta===i?' tcur':''}" style="--fc:${pcol(i)}" title="${esc(fvName(i))}${done?' (passed)':''}">${imgs}${flgX(S.f[i],'')}<b>${esc(nmGet(i)||fvShort(i))}</b>${S.trk?'<span class="tct clkc" title="Total time used in the game" data-tmi="'+i+'">'+clkH(fmtH(tmNow(i)))+'</span>':''}</span>`}).join('')+'</div>'}
+ return '<div class="dr to"><span class="dl">Turn order</span>'+o.map(i=>{const L=S.sc[i],cs=S.cs||{},done=L.every(c=>cs[c]===2);const imgs=typeof SC_IMG==='undefined'?'':L.slice().sort((a,b)=>a-b).filter(c=>SC_IMG[c]).map(c=>{const nm=STRATEGY_CARDS[c]?STRATEGY_CARDS[c][0]:'';return `<img class="tcimg${cs[c]?' pd':''}" src="${(typeof SC_SM!=='undefined'&&SC_SM[c])||SC_IMG[c]}" alt="${esc(nm)}" title="${esc(nm)}${cs[c]?' (played)':''}" draggable="false" onclick="scShow(${c})">`}).join('');return `<span class="toc${done?' dn':''}${S.trk&&S.ta===i?' tcur':''}" style="--fc:${pcol(i)};--gl:${glowCol(pcol(i))}" title="${esc(fvName(i))}${done?' (passed)':''}">${imgs}${flgX(S.f[i],'')}<b>${esc(nmGet(i)||fvShort(i))}</b>${S.trk?'<span class="tct clkc" title="Total time used in the game" data-tmi="'+i+'">'+clkH(fmtH(tmNow(i)))+'</span>':''}</span>`}).join('')+'</div>'}
 function updDots(){try{ttDraw()}catch(e){}if(S.step<3){$('dots').innerHTML='';return}if(S.view==='action'){$('dots').innerHTML=turnOrder();try{ttNextTouch()}catch(e){}return}const o=voteOrder();
  let h=o.length?'<div class="dr"><span class="dl">Voting order</span>'+o.map(i=>{const k=F[S.f[i]]&&F[S.f[i]][1],src=k&&FLG[fvKey(S.f[i],k)],tt=`${esc(fvName(i))}${i===spIdx()?' (Speaker)':''}`;return src?`<span class="vdl" style="--fc:${pcol(i)}" title="${tt}"><img class="flg" src="${src}" alt="" draggable="false"></span>`:`<i style="--fc:${pcol(i)}" title="${tt}"></i>`}).join('')+'</div>':'';
  if(o.length&&S.step===4&&S.ag&&mode(S.ag)!=='res')h+=`<label class="hk"><input type="checkbox" ${S.hack?'checked':''} onchange="setHack(this.checked)"> Hack Election</label>`;
@@ -1045,7 +1046,7 @@ function setHack(c){S.hack=c;updDots();renderFV();if($('vb'))rv()}
 function renderFV(){const b=$('fv');if(!b)return;const o=voteOrder();if(!o.length||spIdx()<0){b.innerHTML='';return}
  const f=o[0],ar=F[S.f[f]][0]==='The Argent Flight';
  const sub=ar?'The Argent Flight always votes first.':S.hack?'Hack Election: voting starts from the speaker’s right and goes counterclockwise.':'Voting starts from the player to the speaker’s left; the speaker votes last.';
- b.innerHTML=`<div><div class="fvl">Votes first</div><div class="fvn" style="--fc:${pcol(f)}">${flgP(f,'fl-lg')}${esc(fvName(f))}</div></div><div class="fvr"><div class="fvs">${sub}</div><div class="fvo">${o.map((i,k)=>`<span class="fvp" style="--fc:${pcol(i)}">${flgP(i,'fl-sm')}${esc(fvShort(i))}${i===spIdx()?' · Speaker':''}</span>`).join('<em>→</em>')}</div></div>`}
+ b.innerHTML=`<div><div class="fvl">Votes first</div><div class="fvn" style="--fc:${pcol(f)}">${flgP(f,'fl-lg')}${esc(fvName(f))}</div></div><div class="fvr"><div class="fvs">${sub}</div><div class="fvo">${o.map((i,k)=>`<span class="fvp" style="--fc:${pcol(i)}">${flgP(i,'fl-sm')}${esc(fvShort(i))}${i===spIdx()?'<img class="fvsp" src="'+VPI.sp+'" alt="Speaker" title="Speaker" draggable="false">':''}</span>`).join('<em>→</em>')}</div></div>`}
 function addT(){S.hack=false;if(S.ag&&S.t0){S.tt=(S.tt||0)+Math.max(0,(S.te||Date.now())-S.t0);S.t0=0}}
 const REC={Arborec:'Green90,Blue10|Green|Black,Yellow,Green',Argent:'Orange|Orange|Green,Blue',Letnev:'Red80,Black20|Black|Red,Blue',Saar:'Green50,Yellow25,Orange25|Orange|Yellow',Keleres:'Yellow40,Orange40,Purple40,Blue20|Purple,Blue|Yellow,Orange',Muaat:'Red50,Orange50|Red|Orange,Red',Hacan:'Orange70,Yellow30|Yellow|Yellow',Empyrean:'Purple|Purple|Red,Pink',Sol:'Yellow60,Blue40|Blue|Yellow,Blue',Creuss:'Blue|Blue|Black,Blue,Purple',L1Z1X:'Black70,Red30|Blue|Red',Mahact:'Yellow|Yellow|Purple',Mentak:'Orange50,Black50|Orange,Yellow|Yellow,Orange',Naalu:'Green|Orange,Yellow|Green,Yellow','Naaz-Rokha':'Green|Green|Yellow',Nekro:'Red|Red|Red,Black',Nomad:'Blue50,Purple50|Blue|Purple,Blue',Sardakk:'Black70,Red30|Black,Red|Red',Ul:'Pink|Pink|Pink','Jol-Nar':'Blue|Blue,Purple|Blue',Cabal:'Red60,Black40|Red|Red,Pink',Winnu:'Orange60,Yellow40|Purple|Yellow,Orange',Xxcha:'Green,Blue|Blue,Green|Green',Yin:'Purple90,Yellow10|Black|Purple,Yellow',Yssaril:'Green65,Yellow65,Red25,Black10|Yellow,Green|Green',Crimson:'Red90,Black10|Red|Blue,Black',Deepwrought:'Blue60,Green40|Blue|Green,Yellow',Firmament:'Purple50,Black30,Blue20|Blue,Black|Red,Purple','Last Bastion':'Blue50,Yellow30,Green20|Blue|Yellow,Green','Ral Nel':'Green50,Red30,Black20|Green|Yellow,Red'};
 const REC_L=['Recommended','Alternative','Possible'];
@@ -1055,7 +1056,7 @@ function colorsFor(j){const L=recList(j);const rk=nm=>{const x=L.findIndex(y=>y.
 function autoCol(j,i){const taken=new Set((S.pc||[]).filter((c,k)=>k!==i&&c));for(const it of recList(j)){const c=COLORS.find(x=>x[0]===it.nm);if(c&&!taken.has(c[1]))return c[1]}const c=COLORS.find(x=>!taken.has(x[1]));return c?c[1]:''}
 function setColor(i,hx){S.pc[i]=hx;S.pa=S.pa||[];S.pa[i]=false;S.cp=null;go()}
 const spIdx=()=>{const n=S.f.length,k=S.sp===undefined||S.sp===''||S.sp===null?-1:+S.sp;return k>=0&&k<n?k:-1};
-const spTag=i=>i===spIdx()?'<span class="vo"><img src="'+VPI.sp+'" alt="Speaker" title="Speaker" draggable="false"></span>':'';
+const spTag=i=>i===spIdx()?'<span class="vo">Speaker</span>':'';
 function go(){try{if(S&&S.rt&&typeof S.rt==='object'){S.rtn=Object.assign(S.rtn||{},S.rt);S.rt=false}STRATEGY_CARDS[1][0]=(S&&S.rt===true)?'Bureaucracy':'Diplomacy'}catch(e){}const A=$('app');clearInterval(TI);window.scrollTo(0,0);syncClock();chrome();if(S.view==='action'){updDots();renderAction();return}
  updDots();
  if(S.step==1){flagPicker(A)}
@@ -1488,7 +1489,7 @@ function renderAction(){try{updDots()}catch(e){}
  let h=`<div class="tvh"><div class="tvt tvtw"><div><small>Round time</small><b id="aptm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(apMs()))}</b>${S.gp||(!S.stat&&st==='running')?'':`<span class="tst ${S.stat?'ended':st}">${stl}</span>`}</div><div class="rdbar" id="rdBar" onclick="rdEdit()" title="Round – click to change">${rdBarHtml()}</div><div class="tvhs">${holdSel()}${eoReady()&&!S.simple?'<button class="eo" title="Agenda vote while the Action Phase clock keeps running" onclick="execOrder()">Executive Order – Agenda</button>':''}</div></div><div class="tvg"><div class="tvc">${toolsHtml()}${S.stat?'':`${S.sco?lwToggle()+(S.simple?'':spkToggle()):''}<button class="stsb ${S.sco?'on':''}" onclick="S.sco=!S.sco;renderAction()">${S.sco?'Done Scoring':'Score Points'}</button>`}${S.stat?'<button class="stsb" onclick="backToAction()">← Back to Action Phase</button>':''}<button class="stsb ${S.stat?'on':''}" onclick="${S.stat?'statusNext()':'statusStart()'}">${S.stat?(S.simple?'Next Round':(custTaken()?'Start Agenda Phase':'Start Strategy Phase')):'Start Status Phase'}</button>${ctl}</div><div class="tvgt"><small>Total Time</small><b id="gtm" class="clk clkc${S.gp?' gpz':''}" title="Click to pause / resume both clocks" onclick="gpToggle()">${clkH(fmtH(gtNow()))}</b></div></div></div>`;
  h+=vdBar();
  h+=`<div class="tvm"><div class="sbcol"><aside class="sbd"><div class="sbl">`
-  +rk.map(e=>{const lead=e.rk===1&&e.t>0,u=vpNum(e.i,e.t),ps=((S.sc&&S.sc[e.i])||[]).some(c=>(S.cs||{})[c]===2);return `<div class="sbr ${lead?'lead':''}${ps?' pas':''}" style="--fc:${pcol(e.i)}"><span class="rk">${e.rk}</span><div class="sbn"><b>${fvT(e.i)}</b>${(()=>{const n=nmGet(e.i);return n?`<span class="scl"><i class="pnm">${esc(n)}</i></span>`:''})()}<small><img class="vpi" src="${VPI.po}" alt="PO" title="Public objectives"> ${e.po} · <img class="vpi" src="${VPI.so}" alt="SO" title="Secret objectives"> ${S.mp.filter(m=>m.p===e.i&&m.r==='Secret Objective'&&m.pts>0).length} · <img class=\"vpi\" src=\"${VPI.qu}\" alt=\"Quacs\" title=\"Quacs\"> ${e.ex}${e.i===spIdx()?` <img class="vpsp" src="${VPI.sp}" alt="Speaker" title="Speaker" draggable="false">`:''}</small></div><span class="sbv">${scThumbs(e.i)}<em${u?` class="${u.d>0?'nup':'ndn'}" style="--ad:-${u.el}ms"`:''}>${e.t}</em></span>${(S.stat||S.sco)?`<button class="sbp" title="Add VP" onclick="openVP(${e.i})">＋</button>`:''}</div>`}).join('')
+  +rk.map(e=>{const lead=e.rk===1&&e.t>0,u=vpNum(e.i,e.t),ps=((S.sc&&S.sc[e.i])||[]).some(c=>(S.cs||{})[c]===2);return `<div class="sbr ${lead?'lead':''}${ps?' pas':''}" style="--fc:${pcol(e.i)}" data-pi="${e.i}"><span class="rk">${e.rk}</span><div class="sbn"><b>${fvT(e.i)}</b>${(()=>{const n=nmGet(e.i);return n?`<span class="scl"><i class="pnm">${esc(n)}</i></span>`:''})()}<small><img class="vpi" src="${VPI.po}" alt="PO" title="Public objectives"> ${e.po} · <img class="vpi" src="${VPI.so}" alt="SO" title="Secret objectives"> ${S.mp.filter(m=>m.p===e.i&&m.r==='Secret Objective'&&m.pts>0).length} · <img class=\"vpi\" src=\"${VPI.qu}\" alt=\"Quacs\" title=\"Quacs\"> ${e.ex}${e.i===spIdx()?` <img class="vpsp" src="${VPI.sp}" alt="Speaker" title="Speaker" draggable="false">`:''}</small></div><span class="sbv">${scThumbs(e.i)}<em${u?` class="${u.d>0?'nup':'ndn'}" style="--ad:-${u.el}ms"`:''}>${e.t}</em></span>${(S.stat||S.sco)?`<button class="sbp" title="Add VP" onclick="openVP(${e.i})">＋</button>`:''}</div>`}).join('')
   +'</div></aside></div><section class="objs"><div class="og">';
  h+=([...S.obj.filter(o=>!o.lk),...S.obj.filter(o=>o.lk)].map(o=>ocCard(o,n)).join('')
   ||(S.obj.length?'':`<div class="empty">No public objectives yet${S.stat||S.sco?' – add them from the list at the bottom.':' – press Score Points to add them.'}</div>`))+lawCard();
@@ -2854,7 +2855,72 @@ function setSpkAct(v){if(v===''||v==null)return;if(String(S.sp)===String(v))retu
 .rider-info .rnone{font-size:1.15rem}
 </style>
 <style>
-/* ---- Speaker marker in agenda voting seats: logo instead of text ---- */
-.vo img{height:1.5rem;width:auto;vertical-align:middle;margin-top:-.2rem}
+/* ---- Speaker logo at the end of the voting order line ---- */
+.fvp img.fvsp{height:1.4em;width:auto;vertical-align:middle;margin-left:.35rem}
 </style>
+<style>
+/* ---- Turn order: chevron steps with the player colour as background ---- */
+.dr.to .toc{background:color-mix(in srgb,var(--fc) 52%,#0d1220)!important;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.65);border:0!important;outline:0!important;box-shadow:none!important;border-radius:.4rem;padding:.25rem .8rem!important}
+.dr.to .toc::before{display:none!important}
+.dr.to .toc b,.dr.to .toc .tct{color:#fff!important}
+.dr.to .toc.tcur{background:var(--fc)!important;box-shadow:0 0 .9rem -.1rem var(--fc)!important;z-index:2}
+.dr.to .toc.tcur b{font-weight:800}
+.dr.to .toc.dn{filter:saturate(.45) brightness(.75)}
+@media(min-width:701px){
+.dr.to{gap:0!important}
+.dr.to .dl{margin-right:.9rem}
+.dr.to .toc{border-radius:0;min-height:3rem;padding:.25rem 1.5rem .25rem 1.7rem!important;margin-left:-.85rem;clip-path:polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%,1rem 50%)}
+.dr.to .dl+.toc{margin-left:0;padding-left:1rem!important;clip-path:polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%)}
+.dr.to .toc.tcur{box-shadow:none!important}
+}
+</style>
+<style>
+/* ---- Turn order: active player = player-colour outline + glow, like the Current turn box ---- */
+.dr.to .toc.tcur{position:relative;isolation:isolate;clip-path:none!important;background:none!important;box-shadow:none!important;filter:drop-shadow(0 0 .35rem var(--gl,var(--fc))) drop-shadow(0 0 .9rem var(--gl,var(--fc)))}
+.dr.to .toc.tcur::before{display:block!important;content:"";position:absolute;inset:0;transform:none;font-size:0;line-height:0;z-index:-1;pointer-events:none;background:color-mix(in srgb,var(--fc) 18%,var(--p));border-radius:.4rem}
+.dr.to .toc.tcur::after{content:"";position:absolute;inset:0;pointer-events:none;border:.2rem solid var(--gl,var(--fc));border-radius:.4rem;z-index:3}
+@media(min-width:701px){
+.dr.to .toc.tcur::before{border-radius:0;clip-path:polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%,1rem 50%)}
+.dr.to .dl+.toc.tcur::before{clip-path:polygon(0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%)}
+.dr.to .toc.tcur::after{border:0;border-radius:0;background:var(--gl,var(--fc));clip-path:polygon(evenodd,0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%,1rem 50%,0 0,5.6px 3px,calc(1rem + 3.6px) 50%,5.6px calc(100% - 3px),calc(100% - 1rem - 1.6px) calc(100% - 3px),calc(100% - 3.6px) 50%,calc(100% - 1rem - 1.6px) 3px,5.6px 3px,0 0)}
+.dr.to .dl+.toc.tcur::after{clip-path:polygon(evenodd,0 0,calc(100% - 1rem) 0,100% 50%,calc(100% - 1rem) 100%,0 100%,0 0,3px 3px,3px calc(100% - 3px),calc(100% - 1rem - 1.6px) calc(100% - 3px),calc(100% - 3.6px) 50%,calc(100% - 1rem - 1.6px) 3px,3px 3px,0 0)}
+}
+</style>
+<style>
+/* ---- VP track: side panel with VP sources other than PO / SO ---- */
+.sbr[data-pi]{cursor:pointer}
+#xpan{position:absolute;z-index:30;width:19rem;max-width:calc(100vw - 1.6rem);background:var(--p);border:.16rem solid var(--fc,var(--gold));border-radius:1rem;padding:.8rem .95rem;box-shadow:0 .6rem 2rem rgba(0,0,0,.55),0 0 1.2rem -.3rem var(--fc,var(--gold));animation:xpin .16s ease-out}
+@keyframes xpin{from{opacity:0;transform:translateX(-.6rem)}to{opacity:1;transform:none}}
+#xpan::before{content:"";position:absolute;left:-.62rem;top:var(--ay,1.4rem);width:.95rem;height:.95rem;background:var(--p);border-left:.16rem solid var(--fc,var(--gold));border-bottom:.16rem solid var(--fc,var(--gold));transform:rotate(45deg)}
+#xpan.below::before{left:var(--ax,1.4rem);top:-.62rem;border:0;border-left:.16rem solid var(--fc,var(--gold));border-top:.16rem solid var(--fc,var(--gold))}
+#xpan h4{margin:0 0 .15rem;font-size:1.1rem;color:var(--t)}
+#xpan small{display:block;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;font-weight:600;margin-bottom:.55rem}
+#xpan .xr{display:flex;justify-content:space-between;align-items:baseline;gap:.8rem;padding:.35rem 0;border-top:.06rem solid var(--bd2);font-size:1.05rem}
+#xpan .xr i{display:block;font-style:normal;color:var(--m);font-size:.82rem;margin-top:.1rem}
+#xpan .xr em{font-style:normal;font-weight:800;font-variant-numeric:tabular-nums;color:var(--gold);font-size:1.2rem}
+#xpan .xr.neg>span{color:#ff9b8a}
+#xpan .xn{color:var(--m);padding:.3rem 0}
+#xpan .xt{display:flex;justify-content:space-between;border-top:.12rem solid var(--bd2);margin-top:.2rem;padding-top:.45rem;font-weight:700}
+</style>
+<script>
+var XP=-1;
+function xpHtml(i){const L=vpSrc(i).filter(r=>r[3]==='X'||r[3]==='H');
+ return '<h4>'+esc(fvName(i))+'</h4><small>Other VP sources</small>'+(L.length?L.map(r=>'<div class="xr'+(r[1]<0?' neg':'')+'"><span>'+esc(r[0])+(r[2]?'<i>'+esc(r[2])+'</i>':'')+'</span></div>').join(''):'<div class="xn">No other VP sources yet.</div>')}
+function xpClose(){XP=-1;const o=document.getElementById('xpan');if(o)o.remove()}
+function xpShow(){const old=document.getElementById('xpan');if(old)old.remove();if(XP<0)return;
+ const row=document.querySelector('.sbr[data-pi="'+XP+'"]');if(!row||S.view!=='action'){XP=-1;return}
+ const d=document.createElement('div');d.id='xpan';d.style.setProperty('--fc',pcol(XP));d.innerHTML=xpHtml(XP);document.body.appendChild(d);
+ const r=row.getBoundingClientRect(),sb=(row.closest('.sbd')||row).getBoundingClientRect(),w=d.offsetWidth,h=d.offsetHeight,vw=window.innerWidth,vh=window.innerHeight;
+ let L,T,below=false;
+ if(sb.right+w+16<vw){L=sb.right+14;T=Math.min(r.top,vh-h-8);T=Math.max(8,T);d.style.setProperty('--ay',Math.max(14,Math.min(h-26,r.top-T+r.height/2-8))+'px')}
+ else{below=true;d.classList.add('below');L=Math.max(8,Math.min(r.left,vw-w-8));T=r.bottom+12;d.style.setProperty('--ax','2rem')}
+ const sx=window.scrollX,sy=window.scrollY;d.style.left=(L+sx)+'px';d.style.top=(T+sy)+'px';
+ for(let k=0;k<2;k++){const q=d.getBoundingClientRect();d.style.left=(parseFloat(d.style.left)+(L-q.left))+'px';d.style.top=(parseFloat(d.style.top)+(T-q.top))+'px'}}
+document.addEventListener('click',e=>{const t=e.target;if(t.closest&&t.closest('#xpan'))return;
+ const row=t.closest&&t.closest('.sbr[data-pi]');
+ if(row&&!t.closest('.sbc')&&!t.closest('button')){const i=+row.dataset.pi;XP=(XP===i)?-1:i;xpShow();return}
+ if(XP>=0)xpClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&XP>=0)xpClose()});
+(function(){const f=window.renderAction;if(typeof f==='function'){window.renderAction=function(){const r=f.apply(this,arguments);try{if(XP>=0)xpShow()}catch(e){}return r}}})();
+</script>
 </body></html>
